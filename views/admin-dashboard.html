@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | Smart Campus Event Planner</title>
+    <!-- This Segment Links to the shared CSS -->
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body>
+    <!-- This is the Shared Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">Smart Campus Events</div>
+        <ul class="nav-links">
+            <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="create-event.html">Create Event</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard Main Content -->
+    <main class="container">
+        <header class="page-header">
+            <h1>Admin Dashboard</h1>
+            <p>Welcome back! Here is the overview of your campus events.</p>
+        </header>
+
+        <!-- Hard-coded Statistics -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Events</h3>
+                <p class="stat-number">24</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Registrations</h3>
+                <p class="stat-number">845</p>
+            </div>
+            <div class="stat-card">
+                <h3>Most Popular Category</h3>
+                <p class="stat-text">Career Events</p>
+            </div>
+            <div class="stat-card">
+                <h3>Avg. Attendance Rate</h3>
+                <p class="stat-number">78%</p>
+            </div>
+        </section>
+
+        <section class="dashboard-lists">
+            <!-- Upcoming Events -->
+            <div class="list-card">
+                <h2>Upcoming Events</h2>
+                <ul class="event-list">
+                    <li>
+                        <strong>Resume Building Workshop</strong>
+                        <span>July 30, 2026 | 45/50 Registered</span>
+                    </li>
+                    <li>
+                        <strong>Tech Networking Night</strong>
+                        <span>August 5, 2026 | 120/150 Registered</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Action Required List -->
+            <div class="list-card">
+                <h2>Status Alerts</h2>
+                <ul class="event-list alert-list">
+                    <li class="alert-full">
+                        <strong>Web Dev Bootcamp</strong>
+                        <span>Status: Full Capacity (30/30)</span>
+                    </li>
+                    <li class="alert-cancelled">
+                        <strong>Outdoor Yoga</strong>
+                        <span>Status: Cancelled (Weather)</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Linking to your shared JS -->
+    <script src="../public/js/main.js"></script>
+</body>
+</html>

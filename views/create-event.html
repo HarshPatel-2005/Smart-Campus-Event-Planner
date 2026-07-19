@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"
+    <title>Create Event | Smart Campus Event Planner</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+
+<body>
+    <!-- This will be the Shared Navigation System -->
+     <navigation class="navigationbar">
+
+        <div class="nav-brand">Smart Campus Events</div>
+
+        <ul class="navigation-links">
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="create-event.html">Create Events</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="login.html">Logout</a></li>
+        </ul>
+
+        <div class="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+     </navigation>
+
+     <!-- This will be the Create Event Form -->
+    <main class="container">
+        <header class="page-header">
+            <h1>Create a New Event</h1>
+            <p>Fill out the details below to publish a new event to the student portal.</p>
+        </header>
+
+        <section class="form-container">
+            <form action="#" method="POST" id="createEventForm">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title *</label>
+                    <input type="text" id="eventTitle" name="eventTitle" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="eventDescription">Description</label>
+                    <textarea id="eventDescription" name="eventDescription" rows="4"></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group half-width">
+                        <label for="eventCategory">Category *</label>
+                        <select id="eventCategory" name="eventCategory" required>
+                            <option value="">Select a category</option>
+                            <option value="academic">Academic workshops</option>
+                            <option value="career">Career events</option>
+                            <option value="club">Club activities</option>
+                            <option value="sports">Sports events</option>
+                            <option value="cultural">Cultural events</option>
+                            <option value="volunteering">Volunteering events</option>
+                            <option value="social">Social events</option>
+                            <option value="guest">Guest lectures</option>
+                            <option value="networking">Networking events</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group half-width">
+                        <label for="eventOrganizer">Organizer Name *</label>
+                        <input type="text" id="eventOrganizer" name="eventOrganizer" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group third-width">
+                        <label for="eventDate">Date *</label>
+                        <input type="date" id="eventDate" name="eventDate" required>
+                    </div>
+                    <div class="form-group third-width">
+                        <label for="startTime">Start Time *</label>
+                        <input type="time" id="startTime" name="startTime" required>
+                    </div>
+                    <div class="form-group third-width">
+                        <label for="endTime">End Time *</label>
+                        <input type="time" id="endTime" name="endTime" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group third-width">
+                        <label for="eventLocation">Location *</label>
+                        <input type="text" id="eventLocation" name="eventLocation" required>
+                    </div>
+                    <div class="form-group third-width">
+                        <label for="eventCapacity">Capacity *</label>
+                        <input type="number" id="eventCapacity" name="eventCapacity" min="1" required>
+                    </div>
+                    <div class="form-group third-width">
+                        <label for="eventStatus">Status</label>
+                        <select id="eventStatus" name="eventStatus">
+                            <option value="Open">Open</option>
+                            <option value="Full">Full</option>
+                            <option value="Cancelled">Cancelled</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Disabled">Disabled</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Event</button>
+                    <button type="reset" class="btn btn-secondary">Clear Form</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <script src="../public/js/main.js"></script>"
+</body>
+</html>
