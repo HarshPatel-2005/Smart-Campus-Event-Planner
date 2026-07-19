@@ -1,33 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
-    <title>Create Event | Smart Campus Event Planner</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Event | Campus Event Planner</title>
+    <!-- The ../ path is correct based on your folder structure! -->
     <link rel="stylesheet" href="../public/css/style.css">
 </head>
-
 <body>
-    <!-- This will be the Shared Navigation System -->
-     <navigation class="navigationbar">
-
-        <div class="nav-brand">Smart Campus Events</div>
-
-        <ul class="navigation-links">
-            <li><a href="admin-dashboard.html">Dashboard</a></li>
-            <li><a href="create-event.html">Create Events</a></li>
-            <li><a href="manage-events.html">Manage Events</a></li>
-            <li><a href="login.html">Logout</a></li>
-        </ul>
-
-        <div class="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a id="CEPID" href="admin-dashboard.html">Campus Event Planner</a>
         </div>
 
-     </navigation>
+        <ul class="navbar-links">
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="create-event.html" class="active">Create Event</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
 
      <!-- This will be the Create Event Form -->
     <main class="container">
