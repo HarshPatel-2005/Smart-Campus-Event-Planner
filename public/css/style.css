@@ -27,6 +27,8 @@ h1, h2, h3, .navbar-logo {
     border-bottom: 1px solid rgb(212, 212, 212);
     top: 0;
     z-index: 1000;
+    flex-wrap: wrap; 
+    gap: 10px; 
 }
 
 .navbar-links {
@@ -37,6 +39,7 @@ h1, h2, h3, .navbar-logo {
     gap: 20px;
     margin: 0;
     padding: 0;
+    flex-wrap: wrap; 
 }
 
 a{
@@ -73,9 +76,15 @@ a:active, #CEPID:active{
     gap: 1em;
 }
 
+.hero-section h1 {
+    text-align: center; 
+}
+
 .button-hero{
     display: flex;
-    gap: 10em;
+    justify-content: center;
+    gap: 2em; 
+    flex-wrap: wrap;
 }
 
 .p{
@@ -94,9 +103,11 @@ a:active, #CEPID:active{
 
 .how-it-works-cards{
     display: flex;
-    justify-content: space-between;
+    justify-content: center; 
     gap: 5em;
-    margin-top: 2%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    flex-wrap: wrap; 
 }
 
 .cards{
@@ -109,4 +120,163 @@ a:active, #CEPID:active{
 
 .cards:hover {
   box-shadow: 0 8px 28px 0 rgba(0,0,0,0.2);
+}
+
+.stats-box{
+    width: 70%;
+    padding: 2em 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-bottom: 3em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    gap: 2em;
+    flex-wrap: wrap;
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.stats h3 {
+    margin: 1;
+    margin-bottom: 2px;
+}
+
+.stats p {
+    margin: 1;
+}
+
+.why-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.why-cards{
+    display: flex;
+    justify-content: center; 
+    gap: 5em;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    flex-wrap: wrap; 
+}
+
+#time-saving-card{
+    width: 40%;
+}
+
+.site-footer {
+    margin-top: 3em;
+    padding: 3em 10% 1.5em;
+    border-top: 1px solid rgb(212, 212, 212);
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 2em;
+    margin-bottom: 2em;
+}
+
+.footer-title {
+    font-family: 'Archivo Black', sans-serif;
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+}
+
+.footer-tagline {
+    color: grey;
+    font-size: 0.9rem;
+    max-width: 240px;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.footer-heading {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: grey;
+    margin: 0 0 6px;
+}
+
+.footer-links a {
+    color: grey;
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgb(230, 230, 230);
+    padding-top: 1em;
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 0.8rem;
+    color: grey;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        position:relative;
+        flex-direction: column; 
+        align-items: center;
+        padding: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar-actions {
+        margin-top: 8px;
+    }
+
+    .hero-section,
+    .how-it-works {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .stats-box {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .p {
+        line-height: 1.8;
+    }
+
+    .how-it-works-cards {
+        gap: 2em;
+    }
+
+    .site-footer {
+        padding: 2em 5% 1.5em;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 1.5em;
+    }
 }
