@@ -4,9 +4,28 @@ body, input, button, select, textarea {
   font-family: 'Inter', sans-serif;
 }
 
-button{
+button, .btn {
     width: 10em;
     height: 3em;
+    border: 1px solid black;
+    border-radius: 6px;
+    background-color: white;
+    color: black;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1.05);
+}
+
+button:active, .btn:active {
+    transform: scale(0.95);
 }
 
 h1, h2, h3, .navbar-logo {
@@ -40,6 +59,13 @@ h1, h2, h3, .navbar-logo {
     margin: 0;
     padding: 0;
     flex-wrap: wrap; 
+}
+
+.navbar-actions .btn {
+    width: auto;
+    height: auto;
+    padding: 8px 16px;
+    font-size: 0.9rem;
 }
 
 a{
