@@ -305,108 +305,122 @@ a:active, #CEPID:active{
 /* LOG IN PAGE */
 
 .log-in-page{
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/1920x1080 Concordia Background.png');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/1920x1080 Concordia Background.png');
+     backdrop-filter: blur(10px);
     background-repeat: no-repeat; 
     background-position: center; 
     background-size: cover; 
     background-attachment: fixed; 
-    min-height: 100vh;  */
+    min-height: 100vh; 
 }
 
-.form-container{
-    height: 100vh;
-    position: relative;
-    background-color: var(--white);
-    overflow: hidden;
+.log-in-page .navbar {
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
-.form__container{
-    position: absolute;
-    width: 60%;
-    height: 100%;
-    padding: 2rem;
-    transition: 0.6s ease-in-out;
+.auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    padding: 2em;
 }
 
-.signup__container{
-    opacity: 0;
-    z-index: 1;
+.auth-card {
+    background-color: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 2.5em;
+    width: 100%;
+    max-width: 440px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    text-align: center;
 }
 
-.signin__container{
-    z-index: 2;
+.auth-subtext {
+    color: grey;
+    font-size: 0.9rem;
+    margin-bottom: 1.5em;
 }
 
-form{
-    height: 100%;
-    max-width: 400px;
-    margin: auto;
+.auth-card form {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    text-align: left;
 }
 
-form h1{
-    font-size: 2.5rem;
-    color: var(--primary-color);
+.auth-card label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    margin-top: 12px;
 }
 
-.socials{
+.auth-card input {
+    padding: 10px 12px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: lightcoral;
+}
+
+.auth-submit {
+    width: 100%;
+    height: 3em;
+    margin-top: 1.5em;
+    background-color: lightcoral;
+    color: white;
+    border: 1px solid lightcoral;
+}
+
+.auth-submit:hover {
+    background-color: #e07a6f;
+    transform: scale(1.02);
+}
+
+.auth-switch {
+    margin-top: 1.5em;
+    font-size: 0.9rem;
+    color: grey;
+}
+
+.auth-switch a {
+    color: lightcoral;
+    font-weight: 600;
+}
+
+/* REGISTER */
+
+.form-row {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin: 2rem 0;
+    gap: 12px;
 }
 
-.socials a{
-    padding: 5px 12px;
-    text-decoration: none;
-    font-size: 1.5rem;
-    color: var(--text-dark);
-    border: 1px solid var(--text-light);
-    border-radius: 100%;
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
 }
 
-form span{
-    color: var(--text-light);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
+.auth-card select {
+    padding: 10px 12px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    margin-top: 6px;
+    background-color: white;
 }
 
-.form__group{
-    position: relative;
-    margin: 0.5rem 0;
-    width: 100%;
-}
-
-input{
-    width: 100%;
-    padding: 0.75rem 1 rem;
-    border: none;
+.auth-card select:focus {
     outline: none;
-    font-size: 1rem;
-    background-color: var(--extra-light);
-    border-bottom: 1px solid var(--primary-color);
-}
-
-.forgot__password{
-    text-decoration: none;
-    font-size: 0.9rem;
-    color: var(--text-light);
-    border-bottom: 1px solid var(--text-light);
-}
-
-.form__container button{
-    padding: .75rem 4rem;
-    margin-top: 2rem;
-    border: none;
-    outline: none;
-    font-size: 1rem;
-    color: var(--white);
-    border-radius: 2rem;
-    background-color: var(--primary-color);
-    cursor: pointer;
+    border-color: lightcoral;
 }
 
 /* MEDIA QUERY */
