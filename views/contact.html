@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Smart Campus Event Planner</title>
+
+    <link rel="stylesheet" href="../public/css/style.css">
+    <script src="../public/js/main.js"></script>
+</head>
+<body>
+
+    <!--Navbar-->
+
+    <nav class="navbar">
+        <div class="navbar-logo"><a id="CEPID" href="index.html">Campus Event Planner</a></div>
+
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html" class="active">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="login.html" class="btn">Login</a>
+        </div>
+    </nav>
+
+    <div class="about-section">
+        <h1>About Us</h1>
+        <p class="p">Smart Campus Event Planner is a student-built platform designed to bring every campus event, workshop, club activity, and networking opportunity into one place. No more scattered emails, posters, and group chats, just one spot to discover what's happening and register in a couple clicks.</p>
+    </div>
+
+    <hr style="width: 85%;">
+
+    <div class="contact-wrapper">
+        <div class="contact-info">
+            <h2>Get In Touch</h2>
+            <p class="p">Have a question, suggestion, or want to report an issue? Reach out and we'll get back to you.</p>
+
+            <div class="contact-detail">
+                <h4>Email</h4>
+                <p>support@campuseventplanner.com</p>
+            </div>
+
+            <div class="contact-detail">
+                <h4>Location</h4>
+                <p>Concordia University, Montreal, QC</p>
+            </div>
+        </div>
+
+        <div class="contact-card">
+            <form action="#" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" name="contact-email" placeholder="you@concordia.ca" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="How can we help?" required></textarea>
+
+                <button type="submit" class="auth-submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <hr style="width: 85%;">
+
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <p class="footer-title">Campus Event Planner</p>
+                <p class="footer-tagline">Find campus events and keep your schedule in one place.</p>
+            </div>
+
+            <div class="footer-links">
+                <p class="footer-heading">Explore</p>
+                <a href="index.html">Home</a>
+                <a href="events.html">Events</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-links">
+                <p class="footer-heading">Account</p>
+                <a href="login.html">Login</a>
+                <a href="register.html">Sign Up</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Campus Event Planner</p>
+        </div>
+    </footer>
+
+</body>
+</html>
