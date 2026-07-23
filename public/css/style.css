@@ -251,7 +251,9 @@ input:focus, select:focus, textarea:focus {
         flex: 1 1 100%;
     }
 
-    /* --- Table Styling (Manage Events) --- */
+}
+
+/* --- Table Styling (Manage Events) --- */
 .table-container {
     background: #fff;
     border-radius: 8px;
@@ -313,4 +315,3 @@ input:focus, select:focus, textarea:focus {
 .btn-small:hover { background-color: #d6d8db; }
 .btn-small.danger { background-color: var(--danger-color); color: #fff; }
 .btn-small.danger:hover { opacity: 0.9; }
-}
