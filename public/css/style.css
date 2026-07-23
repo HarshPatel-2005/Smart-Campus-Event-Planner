@@ -2,11 +2,11 @@
 
 /* --- Shared Foundation: Variables for consistent theming --- */
 :root {
-    --primary-color: lightcoral; /* Updated to teammate's coral theme */
+    --primary-color: lightcoral;
     --secondary-color: #f4f4f4;
     --text-dark: #333;
     --text-light: #fff;
-    --danger-color: #e07a6f; /* Muted red to fit the coral theme */
+    --danger-color: #c74334;
     --success-color: #28a745;
 }
 
@@ -34,7 +34,7 @@ body {
 
 /* --- Shared Navigation Bar --- */
 .navbar {
-    background-color: white; /* Changed to teammate's white background */
+    background-color: white;
     border-bottom: 1px solid rgb(212, 212, 212);
     display: flex;
     justify-content: space-between;
@@ -47,14 +47,14 @@ body {
 
 .navbar-logo a {
     font-size: 1.5rem;
-    color: var(--primary-color); /* Coral text for logo */
+    color: var(--primary-color);
     text-decoration: none;
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .navbar-logo a:hover {
     color: black;
-    transform: scale(1.05); /* Added scaling effect */
+    transform: scale(1.05);
 }
 
 .navbar-links {
@@ -66,7 +66,7 @@ body {
 }
 
 .navbar-links a {
-    color: grey; /* Teammate's grey link style */
+    color: grey;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease, transform 0.2s ease;
@@ -83,7 +83,7 @@ body {
     color: var(--primary-color);
 }
 
-/* Ensure the logout button matches teammate's format */
+/*  logout button */
 .navbar-actions .btn-secondary {
     background-color: var(--primary-color);
     color: white;
@@ -223,7 +223,7 @@ select,
 textarea,
 input[type="email"],
 input[type="password"] {
-    padding: 10px 12px; /* Adjusted padding to match teammate */
+    padding: 10px 12px;
     border: 1px solid rgb(212, 212, 212);
     border-radius: 6px;
     font-size: 0.95rem;
@@ -265,7 +265,7 @@ input:focus, select:focus, textarea:focus {
     background-color: #e07a6f;
     border-color: #e07a6f;
     color: white;
-    transform: scale(1.05); /* Bouncy hover effect */
+    transform: scale(1.05);
 }
 
 .btn-primary:active {
@@ -369,7 +369,7 @@ input:focus, select:focus, textarea:focus {
 
 .btn-small:hover { 
     background-color: #d6d8db; 
-    transform: scale(1.05); /* Match teammate's scaling */
+    transform: scale(1.05);
 }
 .btn-small.danger { background-color: var(--danger-color); color: #fff; }
 .btn-small.danger:hover { background-color: #c9302c; }
@@ -395,7 +395,7 @@ input:focus, select:focus, textarea:focus {
 .auth-card {
     background-color: rgba(255, 255, 255, 0.97);
     backdrop-filter: blur(10px);
-    border-radius: 10px; /* Matched teammate's radius */
+    border-radius: 10px;
     padding: 2.5rem;
     width: 100%;
     max-width: 440px;
