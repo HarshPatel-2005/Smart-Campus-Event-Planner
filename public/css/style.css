@@ -66,7 +66,7 @@ body {
 }
 
 .navbar-links a {
-    color: grey;
+    color: rgb(37, 37, 37);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s ease, transform 0.2s ease;
@@ -437,4 +437,16 @@ input:focus, select:focus, textarea:focus {
 
 .auth-switch a:hover {
     text-decoration: underline;
+}
+
+.admin-theme {
+    /* admin theme color */
+    --primary-color: #b22222; 
+    --danger-color: #8b0000;
+
+}
+
+.admin-theme .navbar {
+    background-color:#fdcdcd;
+    border-bottom: none;
 }
