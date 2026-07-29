@@ -17,15 +17,19 @@ hr {
 button, .btn {
     width: 10em;
     height: 3em;
-    border: 1px solid lightcoral;
+    border: 1px solid black;
     border-radius: 6px;
-    background-color: lightcoral;
-    color: white;
+    background-color: white;
+    color: black;
     font-family: 'Inter', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: 0.2s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 button:hover, .btn:hover {
@@ -106,6 +110,11 @@ a:hover, #CEPID:hover{
 
 a:active, #CEPID:active{
     transform: scale(0.95);
+}
+
+/* NEW — prevents .btn links from getting underlined on hover/active */
+.btn, .btn:hover, .btn:active {
+    text-decoration: none;
 }
 
 .navbar-links a.active {
@@ -581,6 +590,183 @@ a:active, #CEPID:active{
     margin-bottom: 0; 
     line-height: 1.35;
     font-size: 0.9rem;
+}
+
+/* EVENT DETAILS PAGE */
+
+.event-banner {
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    background-color: #f2f2f2;
+}
+
+.event-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.event-page {
+    display: flex;
+    gap: 3em;
+    max-width: 1000px;
+    margin: 2em auto;
+    padding: 0 1.5em;
+    align-items: flex-start;
+}
+
+.event-main {
+    flex: 2;
+    min-width: 0;
+}
+
+.event-tags {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 1em;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.badge-status-open {
+    background-color: #e3f5e6;
+    color: #2e7d32;
+}
+
+.badge-category {
+    background-color: #fde3e1;
+    color: lightcoral;
+}
+
+.event-organizer-line {
+    margin-bottom: 1em;
+    color: grey;
+}
+
+.organizer-label {
+    margin-right: 6px;
+}
+
+.event-meta p {
+    color: grey;
+    margin-bottom: 1em;
+}
+
+.event-section {
+    margin: 1.5em 0;
+}
+
+.location-box {
+    display: flex;
+    gap: 2em;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.map-placeholder {
+    background-color: #f2f2f2;
+    border-radius: 8px;
+    width: 220px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+    flex-shrink: 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding: 12px 0;
+    cursor: pointer;
+}
+
+.faq-item summary {
+    font-weight: 600;
+}
+
+.faq-item p {
+    margin-top: 8px;
+    color: grey;
+}
+
+.organizer-card {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 1.2em;
+    flex-wrap: wrap;
+}
+
+.organizer-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    flex-shrink: 0;
+}
+
+.organizer-info {
+    flex: 1;
+}
+
+.organizer-name {
+    font-weight: 600;
+}
+
+.organizer-stats {
+    color: grey;
+    margin: 0;
+}
+
+.event-sidebar {
+    flex: 1;
+    min-width: 260px;
+    position: sticky;
+    top: 100px;
+}
+
+.register-box {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 10px;
+    padding: 1.5em;
+    text-align: center;
+}
+
+.register-label {
+    color: grey;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.register-value {
+    font-weight: 600;
+    margin-bottom: 1em;
+}
+
+@media (max-width: 768px) {
+    .event-page {
+        flex-direction: column;
+    }
+
+    .event-sidebar {
+        position: static;
+        width: 100%;
+    }
+
+    .event-banner {
+        height: 200px;
+    }
 }
 
 /* MEDIA QUERY */
