@@ -1,4 +1,20 @@
+/* ============================================================
+   FONTS & CSS VARIABLES
+   ============================================================ */
+
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+    --primary-color: lightcoral;
+    --danger-color: #c74334;
+    --success-color: #28a745;
+    --text-dark: #333;
+    --text-light: #fff;
+}
+
+/* ============================================================
+   GLOBAL RESET & BASE TYPOGRAPHY
+   ============================================================ */
 
 * {
     margin: 0;
@@ -10,9 +26,25 @@ body, input, button, select, textarea {
     font-family: 'Inter', sans-serif;
 }
 
+h1, h2, h3, .navbar-logo {
+    font-family: 'Archivo Black', sans-serif;
+}
+
+h1, h2, h3 {
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 0.5em;
+}
+
 hr {
     margin: 0 auto;
 }
+
+/* ============================================================
+   GLOBAL BUTTONS
+   ============================================================ */
 
 button, .btn {
     width: 10em;
@@ -43,25 +75,31 @@ button:active, .btn:active {
     transform: scale(0.95);
 }
 
-h1, h2, h3, .navbar-logo {
-    font-family: 'Archivo Black', sans-serif;
+.btn, .btn:hover, .btn:active {
+    text-decoration: none;
 }
 
-h1, h2, h3 {
-    margin-bottom: 0.5em;
+/* Color variants — layer on top of the base .btn above */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: white;
 }
 
-p {
-    margin-bottom: 0.5em;
+.btn-secondary {
+    background-color: #ccc;
+    border-color: #ccc;
+    color: var(--text-dark);
 }
 
-/* INDEX.HTML */
-
-#CEPID{
-color: lightcoral;
+.btn-secondary:hover {
+    background-color: #bbb;
+    border-color: #bbb;
 }
 
-/* NAVBAR */
+/* ============================================================
+   NAVBAR
+   ============================================================ */
 
 .navbar {
     display: flex;
@@ -95,26 +133,25 @@ color: lightcoral;
     font-size: 0.9rem;
 }
 
-a{
+#CEPID {
+    color: lightcoral;
+}
+
+a {
     text-decoration: none;
     color: grey;
     transition: color 0.2s ease;
     display: inline-block;
 }
 
-a:hover, #CEPID:hover{
+a:hover, #CEPID:hover {
     color: black;
     text-decoration: underline;
     transform: scale(1.05);
 }
 
-a:active, #CEPID:active{
+a:active, #CEPID:active {
     transform: scale(0.95);
-}
-
-/* NEW — prevents .btn links from getting underlined on hover/active */
-.btn, .btn:hover, .btn:active {
-    text-decoration: none;
 }
 
 .navbar-links a.active {
@@ -122,9 +159,11 @@ a:active, #CEPID:active{
     text-decoration: underline;
 }
 
-/* HERO SECTION */
+/* ============================================================
+   HOME PAGE — HERO SECTION
+   ============================================================ */
 
-.hero-section{
+.hero-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,20 +179,22 @@ a:active, #CEPID:active{
     text-align: center;
 }
 
-.button-hero{
+.button-hero {
     display: flex;
     justify-content: center;
     gap: 2em;
     flex-wrap: wrap;
 }
 
-.p{
+.p {
     line-height: 3;
 }
 
-/* HOW IT WORKS SECTION */
+/* ============================================================
+   HOME PAGE — HOW IT WORKS
+   ============================================================ */
 
-.how-it-works{
+.how-it-works {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -163,7 +204,7 @@ a:active, #CEPID:active{
     margin-bottom: 5%;
 }
 
-.how-it-works-cards{
+.how-it-works-cards {
     display: flex;
     justify-content: center;
     gap: 5em;
@@ -172,9 +213,11 @@ a:active, #CEPID:active{
     flex-wrap: wrap;
 }
 
-/* UNIVERSAL CARDS */
+/* ============================================================
+   UNIVERSAL CARDS
+   ============================================================ */
 
-.cards{
+.cards {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
@@ -193,9 +236,11 @@ a:active, #CEPID:active{
     box-shadow: 0 8px 28px 0 rgba(0,0,0,0.2);
 }
 
-/* STATS */
+/* ============================================================
+   HOME PAGE — STATS BOX
+   ============================================================ */
 
-.stats-box{
+.stats-box {
     width: 70%;
     padding: 2em 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -210,13 +255,14 @@ a:active, #CEPID:active{
     flex-wrap: wrap;
 }
 
-.stats{
+.stats {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .stats h3 {
-    margin: 1;
+    margin: 0;
     margin-bottom: 4px;
 }
 
@@ -224,9 +270,11 @@ a:active, #CEPID:active{
     margin: 0;
 }
 
-/* WHY SECTION */
+/* ============================================================
+   HOME PAGE — WHY SECTION
+   ============================================================ */
 
-.why-section{
+.why-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -234,11 +282,11 @@ a:active, #CEPID:active{
     align-content: center;
 }
 
-.why-section h2{
+.why-section h2 {
     padding-top: 1em;
 }
 
-.why-cards{
+.why-cards {
     display: flex;
     justify-content: center;
     gap: 5em;
@@ -247,11 +295,13 @@ a:active, #CEPID:active{
     flex-wrap: wrap;
 }
 
-#time-saving-card{
-width: 40%;
+#time-saving-card {
+    width: 40%;
 }
 
-/* FOOTER */
+/* ============================================================
+   FOOTER
+   ============================================================ */
 
 .site-footer {
     margin-top: 3em;
@@ -312,9 +362,11 @@ width: 40%;
     margin: 0;
 }
 
-/* LOG IN PAGE */
+/* ============================================================
+   AUTH PAGES — LOGIN / REGISTER SHARED
+   ============================================================ */
 
-.log-in-page{
+.log-in-page {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/1920x1080 Concordia Background.png');
     backdrop-filter: blur(10px);
     background-repeat: no-repeat;
@@ -399,7 +451,9 @@ width: 40%;
     font-weight: 600;
 }
 
-/* REGISTER */
+/* ============================================================
+   REGISTER PAGE — NAME ROW & ROLE SELECT
+   ============================================================ */
 
 .form-row {
     display: flex;
@@ -428,7 +482,9 @@ width: 40%;
     border-color: lightcoral;
 }
 
-/* CONTACT PAGE */
+/* ============================================================
+   CONTACT PAGE
+   ============================================================ */
 
 .about-section {
     text-align: center;
@@ -502,54 +558,56 @@ width: 40%;
     border-color: lightcoral;
 }
 
-/* EVENTS */
+/* ============================================================
+   EVENTS PAGE — SEARCH & LISTING
+   ============================================================ */
 
-.events-container{
+.events-container {
     max-width: 1100px;
     margin: 4rem auto;
     padding: 0 2rem;
 }
 
-.events-header{
+.events-header {
     margin-bottom: 2rem;
 }
 
-.events-header h2{
+.events-header h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.events-header p{
+.events-header p {
     max-width: 700px;
     line-height: 1.7;
     color: #444;
 }
 
-.search-card{
+.search-card {
     background: white;
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,.08);
 }
 
-.search-form{
+.search-form {
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-.search-form label{
-    font-weight:600;
+.search-form label {
+    font-weight: 600;
 }
 
-.search-row{
+.search-row {
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.search-row input{
+.search-row input {
     flex: 1;
     min-width: 350px;
     padding: 12px;
@@ -558,13 +616,12 @@ width: 40%;
     font-size: 1rem;
 }
 
-.event-cards{
+.event-cards {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-
     max-width: 1100px;
     margin: 2rem auto 0;
 }
@@ -612,7 +669,9 @@ width: 40%;
     color: #444;
 }
 
-/* EVENT DETAILS PAGE */
+/* ============================================================
+   EVENT DETAILS PAGE
+   ============================================================ */
 
 .event-banner {
     width: 100%;
@@ -789,64 +848,10 @@ width: 40%;
     }
 }
 
-/* MEDIA QUERY */
+/* ============================================================
+   STUDENT DASHBOARD
+   ============================================================ */
 
-@media (max-width: 768px) {
-    .navbar {
-        position:relative;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .navbar-actions {
-        margin-top: 8px;
-    }
-
-    .hero-section,
-    .how-it-works {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .stats-box {
-        width: 90%;
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .p {
-        line-height: 1.8;
-    }
-
-    .how-it-works-cards {
-        gap: 2em;
-    }
-
-    .site-footer {
-        padding: 2em 5% 1.5em;
-    }
-
-    .footer-top {
-        flex-direction: column;
-        gap: 1.5em;
-    }
-}
-
-/* ========================================
- * this is the stuff that's specific to Student Dashboard
- * ======================================== */
-
-/*  Dashboard Statistics Grid
- *  Creates 4 responsive cards in a row */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -854,8 +859,6 @@ width: 40%;
     margin: 2rem 0;
 }
 
-/*  Individual stat card
- *  White background with icon and number */
 .stat-card {
     background: white;
     padding: 24px;
@@ -883,7 +886,6 @@ width: 40%;
     flex-shrink: 0;
 }
 
-/* Color variants for stat icons */
 .stat-card-primary .stat-icon { background: #fde3e1; }
 .stat-card-success .stat-icon { background: #e3f5e6; }
 .stat-card-info .stat-icon { background: #dbeafe; }
@@ -933,8 +935,6 @@ width: 40%;
     display: inline-block;
 }
 
-/*  Reuses team's .cards component
- *  For displaying events on the dashboard */
 .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -960,10 +960,6 @@ width: 40%;
     margin-bottom: 4px;
 }
 
-/*
- *  Color-coded status indicators
- *  Used on both dashboard and registrations pages
- */
 .event-status {
     display: inline-block;
     padding: 4px 12px;
@@ -993,8 +989,6 @@ width: 40%;
     color: #666;
 }
 
-/*  Two-column grid for activity feed and suggestions
- *  Stacks to single column on mobile */
 .activity-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1017,7 +1011,6 @@ width: 40%;
     margin-bottom: 16px;
 }
 
-/* Activity list items */
 .activity-list {
     list-style: none;
     padding: 0;
@@ -1057,7 +1050,6 @@ width: 40%;
     color: #999;
 }
 
-/* Suggestion items */
 .suggestion-item {
     display: flex;
     justify-content: space-between;
@@ -1086,9 +1078,9 @@ width: 40%;
     font-size: 0.9rem;
 }
 
-/* ========================================
- * this is the stuff that's specific to My Registration
- * ======================================== */
+/* ============================================================
+   MY REGISTRATIONS PAGE
+   ============================================================ */
 
 .filter-section {
     margin-bottom: 2rem;
@@ -1131,8 +1123,6 @@ width: 40%;
     color: grey;
 }
 
-/*  List of registration cards
- *  Each card shows event details with actions */
 .registrations-list {
     display: flex;
     flex-direction: column;
@@ -1180,11 +1170,10 @@ width: 40%;
     align-items: center;
 }
 
-/*  ========================================
- *  shared components between the two
- *  ======================================== */
+/* ============================================================
+   SHARED — DASHBOARD & REGISTRATIONS COMPONENTS
+   ============================================================ */
 
-/* Section header with "View All" link */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -1208,7 +1197,6 @@ width: 40%;
     text-decoration: underline;
 }
 
-/* Page header for registration page */
 .page-header {
     margin-bottom: 2rem;
 }
@@ -1224,7 +1212,6 @@ width: 40%;
     margin-top: 4px;
 }
 
-/* Empty state for when no registrations exist */
 .empty-state {
     text-align: center;
     padding: 60px 20px;
@@ -1237,24 +1224,303 @@ width: 40%;
     color: grey;
 }
 
-/* ========================================
- *  RESPONSIVE ADDITIONS FOR DASHBOARD
- *  ======================================== */
+/* ============================================================
+   ADMIN — CONTAINER & DASHBOARD STATS
+   ============================================================ */
 
-/*  Additional responsive rules for your new components
- *  These work alongside the team's existing media queries */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.admin-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.admin-stat-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.admin-stat-card:hover {
+    box-shadow: 0 8px 28px 0 rgba(0,0,0,0.2);
+}
+
+.admin-stat-number {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    font-family: 'Archivo Black', sans-serif;
+}
+
+.admin-stat-text {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-top: 0.5rem;
+}
+
+/* ============================================================
+   ADMIN — DASHBOARD LISTS
+   ============================================================ */
+
+.dashboard-lists {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.list-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.event-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.event-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgb(212, 212, 212);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.event-list li:last-child {
+    border-bottom: none;
+}
+
+.alert-full strong { color: var(--success-color); }
+.alert-cancelled strong { color: var(--danger-color); }
+
+/* ============================================================
+   ADMIN — CREATE/EDIT EVENT FORM
+   ============================================================ */
+
+.form-container {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    max-width: 800px;
+}
+
+.form-container .form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container .form-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.form-container .half-width {
+    flex: 1 1 calc(50% - 0.75rem);
+}
+
+.form-container .third-width {
+    flex: 1 1 calc(33.333% - 1rem);
+}
+
+.form-container label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="date"],
+.form-container input[type="time"],
+.form-container select,
+.form-container textarea,
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    padding: 10px 12px;
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    transition: border-color 0.2s;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-actions {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+}
+
+/* ============================================================
+   ADMIN — MANAGE EVENTS TABLE
+   ============================================================ */
+
+.table-container {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    overflow-x: auto;
+}
+
+.event-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.event-table th, .event-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+.event-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    font-family: 'Archivo Black', sans-serif;
+    color: var(--text-dark);
+}
+
+.event-table tr:hover {
+    background-color: #fcfcfc;
+}
+
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.status-badge.open { background: #d4edda; color: #155724; }
+.status-badge.full { background: #fff3cd; color: #856404; }
+.status-badge.cancelled { background: #f8d7da; color: #721c24; }
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    background-color: #e2e3e5;
+    color: var(--text-dark);
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn-small:hover {
+    background-color: #d6d8db;
+    transform: scale(1.05);
+}
+
+.btn-small.danger { background-color: var(--danger-color); color: #fff; }
+.btn-small.danger:hover { background-color: #c9302c; }
+
+/* ============================================================
+   ADMIN — THEME OVERRIDE
+   ============================================================ */
+
+.admin-theme {
+    --primary-color: #b22222;
+    --danger-color: #8b0000;
+}
+
+.admin-theme .navbar {
+    background-color: #fdcdcd;
+    border-bottom: none;
+}
+
+/* ============================================================
+   MEDIA QUERIES — GENERAL / HOME / NAVBAR / FOOTER
+   ============================================================ */
+
 @media (max-width: 768px) {
-    /* Dashboard stats - 2 columns on tablet */
+    .navbar {
+        position: relative;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar-actions {
+        margin-top: 8px;
+    }
+
+    .hero-section,
+    .how-it-works {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .stats-box {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .p {
+        line-height: 1.8;
+    }
+
+    .how-it-works-cards {
+        gap: 2em;
+    }
+
+    .site-footer {
+        padding: 2em 5% 1.5em;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+}
+
+/* ============================================================
+   MEDIA QUERIES — DASHBOARD / REGISTRATIONS / ADMIN
+   ============================================================ */
+
+@media (max-width: 768px) {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    /* Activity section - 1 column on tablet */
     .activity-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Registration cards - stack vertically */
     .registration-card {
         flex-direction: column;
         align-items: flex-start;
@@ -1266,17 +1532,14 @@ width: 40%;
         justify-content: flex-end;
     }
 
-    /* Events grid - 1 column */
     .events-grid {
         grid-template-columns: 1fr;
     }
 
-    /* Welcome header - stack vertically */
     .welcome-header {
         flex-direction: column;
     }
 
-    /* Filter tabs - stack vertically */
     .filter-tabs {
         flex-direction: column;
     }
@@ -1285,9 +1548,23 @@ width: 40%;
         width: 100%;
         text-align: center;
     }
+
+    .dashboard-lists {
+        grid-template-columns: 1fr;
+    }
+
+    .event-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .form-container .half-width,
+    .form-container .third-width {
+        flex: 1 1 100%;
+    }
 }
 
-/* Small phones - 1 column for stats */
 @media (max-width: 480px) {
     .stats-grid {
         grid-template-columns: 1fr;
