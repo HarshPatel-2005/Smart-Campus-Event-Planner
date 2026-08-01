@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Registrations - Smart Campus</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+    <script src="../public/js/main.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-logo"><a id="CEPID" href="student-dashboard.html">Campus Event Planner</a></div>
+
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student-dashboard.html">Dashboard</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="my-registration.html" class="active">My Registrations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions"><a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
+        <section class="page-header">
+            <h1>📋 My Registrations</h1>
+            <p class="page-subtitle">Manage all your event registrations in one place</p>
+        </section>
+
+        <!-- Filter Tabs -->
+        <section class="filter-section">
+            <div class="filter-tabs" id="filterTabs">
+                <button class="filter-tab active" data-filter="all">All Registrations</button>
+                <button class="filter-tab" data-filter="upcoming">Upcoming</button>
+                <button class="filter-tab" data-filter="past">Past Events</button>
+                <button class="filter-tab" data-filter="cancelled">Cancelled</button>
+            </div>
+            <span class="registration-count" id="registrationCount">4 registrations</span>
+        </section>
+
+        <!-- Registrations List -->
+        <section class="registrations-section">
+            <div class="registrations-list" id="registrationsList">
+                <!-- Populated by JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Same footer as dashboard -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div>
+                <p class="footer-title">SmartCampus</p>
+                <p class="footer-tagline">Your campus event hub</p>
+            </div>
+            <div class="footer-links">
+                <p class="footer-heading">Quick Links</p>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Smart Campus Event Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
