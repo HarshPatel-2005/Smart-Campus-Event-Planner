@@ -1,5 +1,5 @@
 /* ========================================
- S MART CAMPUS EVENT PLANNER           *
+ SMART CAMPUS EVENT PLANNER           *
  Student Dashboard & My Registrations
  Standalone JavaScript - Version 1.0
  ======================================== */
