@@ -1367,9 +1367,20 @@ width: 40%;
     font-weight: bold;
 }
 
-.status-badge.open { background: #d4edda; color: #155724; }
-.status-badge.full { background: #fff3cd; color: #856404; }
-.status-badge.cancelled { background: #f8d7da; color: #721c24; }
+.status-badge.open { 
+    background: #d4edda; 
+    color: #155724; 
+}
+
+.status-badge.full { 
+    background: #fff3cd; 
+    color: #856404; 
+}
+
+.status-badge.cancelled { 
+    background: #f8d7da; 
+    color: #721c24; 
+}
 
 .action-buttons {
     display: flex;
