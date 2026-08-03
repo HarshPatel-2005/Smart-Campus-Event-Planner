@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Overall Settings -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="../public/css/style.css"">
+</head>
+
+<body>
+    <!--Navbar-->
+
+    <nav class="navbar">
+        <div class="navbar-logo"><a id="CEPID" href="student-dashboard.html">Campus Event Planner</a></div>
+
+        <ul class="navbar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student-dashboard.html" class="active">Dashboard</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="my-registration.html">My Registrations</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+
+        <div class="navbar-actions"><a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main style="max-width: 1200px; margin: 30px auto; padding: 0 20px;"> <!-- inline overrides document, need the content centered & spaced -->
+
+        <!-- Welcome Section -->
+        <section class="welcome-section">
+            <div class="welcome-header">
+                <div>
+                    <h1>Welcome back, User! 👋</h1>
+                    <p class="welcome-subtitle">Here's what's happening with your campus events</p>
+                </div>
+                <div class="date-display" id="currentDate"></div>
+            </div>
+        </section>
+
+        <!-- Stats Cards, providing a general overview -->
+        <section>
+            <div class="stats-grid">
+
+                <!-- category 1, how many events has the student registered in -->
+                <div class="stat-card stat-card-primary">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="totalRegistered">6</span>
+                        <span class="stat-label">Total Registered</span>
+                    </div>
+                </div>
+
+                <!-- category 2, how many events are upcoming -->
+                <div class="stat-card stat-card-success">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="upcomingEvents">4</span>
+                        <span class="stat-label">Upcoming Events</span>
+                    </div>
+                </div>
+
+                <!-- category 3, how many events the student has attended -->
+                <div class="stat-card stat-card-info">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="attendedEvents">2</span>
+                        <span class="stat-label">Events Attended</span>
+                    </div>
+                </div>
+
+                <!-- category 4, how many events are cancelled -->
+                <div class="stat-card stat-card-warning">
+                    <div class="stat-icon">❌</div>
+                    <div class="stat-content">
+                        <span class="stat-number" id="cancelledEvents">0</span>
+                        <span class="stat-label">Cancelled</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Upcoming Events, stuff in the future the student can register for -->
+        <section>
+            <div class="section-header">
+                <h2>📅 Your Upcoming Events</h2>
+                <a href="events.html" class="view-all-link">View All →</a>
+            </div>
+            <div class="events-grid" id="upcomingEventsGrid"> </div>
+            <!-- this part's content is to be populated by JavaScript when the page loads,
+                 so that I could update the JS file to update all the content display at once,
+                 just like how a CSS document can change everything at once -->
+        </section>
+
+        <!-- Activity & Suggestions -->
+        <section class="activity-grid">
+            <div class="activity-card">
+                <h3>🕐 Recent Activity</h3>
+                <ul class="activity-list" id="recentActivity"> </ul> <!-- similarly, to be populated by JavaScript when the page loads -->
+            </div>
+            <div class="suggestions-card">
+                <h3>💡 Suggested For You</h3>
+                <div class="suggestion-list" id="suggestedEvents"> </div> <!-- also similarly, to be populated by JavaScript when the page loads -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Page Footer, same as the team's work -->
+    <footer class="site-footer">
+        <div class="footer-top">
+            <div>
+                <p class="footer-title">SmartCampus</p>
+                <p class="footer-tagline">Your campus event hub</p>
+            </div>
+            <div class="footer-links">
+                <p class="footer-heading">Quick Links</p>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="privacy.html">Privacy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Smart Campus Event Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+        <!-- Connect this html file to its corresponding JS file-->
+    <script src="main.js"></script>
+</body>
+</html>
