@@ -565,7 +565,7 @@ width: 40%;
 .event-cards{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 20px;
 
@@ -1422,6 +1422,8 @@ width: 40%;
 .admin-theme .navbar {
     background-color: #fdcdcd;
     border-bottom: none;
+}
+
 .empty-state p {
     font-size: 1.1rem;
     color: #888;
