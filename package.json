@@ -1,0 +1,21 @@
+{
+  "name": "smart-campus-event-planner",
+  "version": "1.0.0",
+  "description": "SOEN287 Smart Campus Event Planner - Deliverable 2",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mysql2": "^3.10.0",
+    "bcrypt": "^5.1.1",
+    "express-validator": "^7.1.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
