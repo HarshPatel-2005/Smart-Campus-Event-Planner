@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Overall Settings -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - Smart Campus</title>
-    <link rel="stylesheet" href="../public/css/style.css">
-    <script src="../public/js/main.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css"">
 </head>
+
 <body>
     <!--Navbar-->
 
@@ -26,21 +28,24 @@
     </nav>
 
     <!-- Main Content -->
-    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
+    <main style="max-width: 1200px; margin: 30px auto; padding: 0 20px;"> <!-- inline overrides document, need the content centered & spaced -->
+
         <!-- Welcome Section -->
         <section class="welcome-section">
             <div class="welcome-header">
                 <div>
-                    <h1>Welcome back, Sarah! 👋</h1>
+                    <h1>Welcome back, User! 👋</h1>
                     <p class="welcome-subtitle">Here's what's happening with your campus events</p>
                 </div>
                 <div class="date-display" id="currentDate"></div>
             </div>
         </section>
 
-        <!-- Stats Cards -->
+        <!-- Stats Cards, providing a general overview -->
         <section>
             <div class="stats-grid">
+
+                <!-- category 1, how many events has the student registered in -->
                 <div class="stat-card stat-card-primary">
                     <div class="stat-icon">📋</div>
                     <div class="stat-content">
@@ -48,6 +53,8 @@
                         <span class="stat-label">Total Registered</span>
                     </div>
                 </div>
+
+                <!-- category 2, how many events are upcoming -->
                 <div class="stat-card stat-card-success">
                     <div class="stat-icon">📅</div>
                     <div class="stat-content">
@@ -55,6 +62,8 @@
                         <span class="stat-label">Upcoming Events</span>
                     </div>
                 </div>
+
+                <!-- category 3, how many events the student has attended -->
                 <div class="stat-card stat-card-info">
                     <div class="stat-icon">✅</div>
                     <div class="stat-content">
@@ -62,6 +71,8 @@
                         <span class="stat-label">Events Attended</span>
                     </div>
                 </div>
+
+                <!-- category 4, how many events are cancelled -->
                 <div class="stat-card stat-card-warning">
                     <div class="stat-icon">❌</div>
                     <div class="stat-content">
@@ -69,38 +80,36 @@
                         <span class="stat-label">Cancelled</span>
                     </div>
                 </div>
+
             </div>
         </section>
 
-        <!-- Upcoming Events -->
+        <!-- Upcoming Events, stuff in the future the student can register for -->
         <section>
             <div class="section-header">
                 <h2>📅 Your Upcoming Events</h2>
                 <a href="events.html" class="view-all-link">View All →</a>
             </div>
-            <div class="events-grid" id="upcomingEventsGrid">
-                <!-- Populated by JavaScript -->
-            </div>
+            <div class="events-grid" id="upcomingEventsGrid"> </div>
+            <!-- this part's content is to be populated by JavaScript when the page loads,
+                 so that I could update the JS file to update all the content display at once,
+                 just like how a CSS document can change everything at once -->
         </section>
 
         <!-- Activity & Suggestions -->
         <section class="activity-grid">
             <div class="activity-card">
                 <h3>🕐 Recent Activity</h3>
-                <ul class="activity-list" id="recentActivity">
-                    <!-- Populated by JavaScript -->
-                </ul>
+                <ul class="activity-list" id="recentActivity"> </ul> <!-- similarly, to be populated by JavaScript when the page loads -->
             </div>
             <div class="suggestions-card">
                 <h3>💡 Suggested For You</h3>
-                <div class="suggestion-list" id="suggestedEvents">
-                    <!-- Populated by JavaScript -->
-                </div>
+                <div class="suggestion-list" id="suggestedEvents"> </div> <!-- also similarly, to be populated by JavaScript when the page loads -->
             </div>
         </section>
     </main>
 
-    <!-- Use your team's footer -->
+    <!-- Page Footer, same as the team's work -->
     <footer class="site-footer">
         <div class="footer-top">
             <div>
@@ -119,6 +128,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+        <!-- Connect this html file to its corresponding JS file-->
+    <script src="main.js"></script>
 </body>
 </html>

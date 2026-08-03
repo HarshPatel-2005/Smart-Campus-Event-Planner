@@ -1,17 +1,9 @@
-/* ========================================
- SMART CAMPUS EVENT PLANNER           *
- Student Dashboard & My Registrations
- Standalone JavaScript - Version 1.0
- ======================================== */
-
 // ========================================
-// 1. MAIN INITIALIZATION
+// MAIN INITIALIZATION - this will run when the page loads
 // ========================================
-
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- Dashboard Page ---
-    // Check if we're on the dashboard page by looking for a unique element
+    // Check if the user is on the Student Dashboard page (has the date display)
     if (document.getElementById('currentDate')) {
         displayCurrentDate();
         loadDashboardStats();
@@ -20,8 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         loadSuggestedEvents();
     }
 
-    // --- My Registrations Page ---
-    // Check if we're on the registrations page
+    // Check if the user is on the My Registrations page (has the registrations list)
     if (document.getElementById('registrationsList')) {
         loadRegistrationsData('all');
         setupFilterTabs();
@@ -31,16 +22,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 // ========================================
-// 2. DASHBOARD FUNCTIONS
+// STUDENT-DASHBOARD FUNCTIONS
 // ========================================
 
-// Displays the current date in the dashboard header
+// Show today's date in the dashboard header
 function displayCurrentDate() {
-    const dateDisplay = document.getElementById('currentDate');
+    var dateDisplay = document.getElementById('currentDate');
     if (!dateDisplay) return;
 
-    const now = new Date();
-    const options = {
+    var now = new Date();
+    var options = {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -49,35 +40,27 @@ function displayCurrentDate() {
     dateDisplay.textContent = now.toLocaleDateString('en-US', options);
 }
 
-// Loads and displays dashboard statistics cards
+// Update the 4 stat card categories (hard coded for now)
 function loadDashboardStats() {
-    // In a real app, these would come from a database, but for Deliverable 1, we use hard-coded data
-    const stats = {
-        totalRegistered: 6,
-        upcomingEvents: 4,
-        attendedEvents: 2,
-        cancelledEvents: 0
-    };
+    var totalElement = document.getElementById('totalRegistered');
+    var upcomingElement = document.getElementById('upcomingEvents');
+    var attendedElement = document.getElementById('attendedEvents');
+    var cancelledElement = document.getElementById('cancelledEvents');
 
-    // Update each stat card
-    const totalElement = document.getElementById('totalRegistered');
-    const upcomingElement = document.getElementById('upcomingEvents');
-    const attendedElement = document.getElementById('attendedEvents');
-    const cancelledElement = document.getElementById('cancelledEvents');
-
-    if (totalElement) totalElement.textContent = stats.totalRegistered;
-    if (upcomingElement) upcomingElement.textContent = stats.upcomingEvents;
-    if (attendedElement) attendedElement.textContent = stats.attendedEvents;
-    if (cancelledElement) cancelledElement.textContent = stats.cancelledEvents;
+    if (totalElement) totalElement.textContent = 6;
+    if (upcomingElement) upcomingElement.textContent = 4;
+    if (attendedElement) attendedElement.textContent = 2;
+    if (cancelledElement) cancelledElement.textContent = 0;
 }
 
-// Loads and displays upcoming events in the dashboard
+// "Upcoming Events" cards on the dashboard (hard coded for now)
 function loadUpcomingEvents() {
-    const grid = document.getElementById('upcomingEventsGrid');
+
+    //this connects to the student-dashboard.html file by calling the id upcomingEventsGrid
+    var grid = document.getElementById('upcomingEventsGrid');
     if (!grid) return;
 
-    // Hard-coded event data for Deliverable 1
-    const events = [
+    var events = [
         {
             title: 'Web Development Workshop',
             date: 'Aug 10, 2026',
@@ -108,9 +91,11 @@ function loadUpcomingEvents() {
         }
     ];
 
-    // Generate HTML for each event card
-    grid.innerHTML = events.map(function(event) {
-        return `
+    // Build HTML for each event card, as a string, then inject into student-dashboard.html which may call this function
+    var html = '';
+    for (var i = 0; i < events.length; i++) {
+        var event = events[i];
+        html = html + `
         <div class="cards">
         <h4 class="event-title">${event.title}</h4>
         <p class="event-meta">📅 ${event.date}</p>
@@ -123,16 +108,18 @@ function loadUpcomingEvents() {
         </a>
         </div>
         `;
-    }).join('');
+    }
+    grid.innerHTML = html;
 }
 
-// Loads and displays recent activity in the dashboard
+// "Recent Activity" list on the dashboard (hard coded for now)
 function loadRecentActivity() {
-    const list = document.getElementById('recentActivity');
+
+    //this connects to the student-dashboard.html file by calling the id recentActivity
+    var list = document.getElementById('recentActivity');
     if (!list) return;
 
-    // Hard-coded activity data
-    const activities = [
+    var activities = [
         {
             title: 'Registered for "Web Development Workshop"',
             time: '2 hours ago',
@@ -150,8 +137,11 @@ function loadRecentActivity() {
         }
     ];
 
-    list.innerHTML = activities.map(function(activity) {
-        return `
+    // Build HTML for each event card, as a string, then inject into student-dashboard.html which may call this function
+    var html = '';
+    for (var i = 0; i < activities.length; i++) {
+        var activity = activities[i];
+        html = html + `
         <li>
         <span class="activity-dot dot-${activity.dot}"></span>
         <div>
@@ -160,16 +150,18 @@ function loadRecentActivity() {
         </div>
         </li>
         `;
-    }).join('');
+    }
+    list.innerHTML = html;
 }
 
-// Loads and displays suggested events in the dashboard
+// "Suggested For You" list on the dashboard (hard coded for now)
 function loadSuggestedEvents() {
-    const container = document.getElementById('suggestedEvents');
+
+    //this connects to the student-dashboard.html file by calling the id suggestedEvents
+    var container = document.getElementById('suggestedEvents');
     if (!container) return;
 
-    // Hard-coded suggestions based on user interests
-    const suggestions = [
+    var suggestions = [
         {
             title: 'Data Science Bootcamp',
             date: 'Aug 15',
@@ -187,8 +179,11 @@ function loadSuggestedEvents() {
         }
     ];
 
-    container.innerHTML = suggestions.map(function(suggestion) {
-        return `
+    // Build HTML for each event card, as a string, then inject into student-dashboard.html which may call this function
+    var html = '';
+    for (var i = 0; i < suggestions.length; i++) {
+        var suggestion = suggestions[i];
+        html = html + `
         <div class="suggestion-item">
         <div class="suggestion-info">
         <p class="suggestion-title">${suggestion.title}</p>
@@ -197,25 +192,22 @@ function loadSuggestedEvents() {
         <a href="event-details.html" class="suggestion-link">View →</a>
         </div>
         `;
-    }).join('');
+    }
+    container.innerHTML = html;
 }
 
 
 // ========================================
-// 3. MY REGISTRATIONS FUNCTIONS
+// MY-REGISTRATION FUNCTIONS
 // ========================================
 
-/**
- * Loads and displays registrations with optional filtering
- * @param {string} filter - 'all', 'upcoming', 'past', or 'cancelled'
- */
+// Load registrations (hard coded for now) and applies the selected filter
 function loadRegistrationsData(filter) {
-    const list = document.getElementById('registrationsList');
-    const countDisplay = document.getElementById('registrationCount');
+    var list = document.getElementById('registrationsList');
+    var countDisplay = document.getElementById('registrationCount');
     if (!list) return;
 
-    // Hard-coded registration data for Deliverable 1
-    const allRegistrations = [
+    var allRegistrations = [
         {
             id: 1,
             title: 'Web Development Workshop',
@@ -254,41 +246,40 @@ function loadRegistrationsData(filter) {
         }
     ];
 
-    // Apply filter
-    var filtered = allRegistrations;
-
-    if (filter === 'upcoming') {
-        filtered = allRegistrations.filter(function(reg) {
-            return reg.status === 'upcoming';
-        });
-    } else if (filter === 'past') {
-        filtered = allRegistrations.filter(function(reg) {
-            return reg.status === 'past';
-        });
-    } else if (filter === 'cancelled') {
-        filtered = allRegistrations.filter(function(reg) {
-            return reg.status === 'cancelled';
-        });
-    }
-    // 'all' shows everything
-
-    // Update count
-    if (countDisplay) {
-        var countText = filtered.length + ' registration';
-        if (filtered.length !== 1) {
-            countText += 's';
+    // Filter the data based on which tab was clicked
+    var filtered = [];
+    if (filter === 'all') {
+        filtered = allRegistrations;
+    } else if (filter === 'upcoming') {
+        for (var i = 0; i < allRegistrations.length; i++) {
+            if (allRegistrations[i].status === 'upcoming') {
+                filtered.push(allRegistrations[i]);
+            }
         }
-        countDisplay.textContent = countText;
+    } else if (filter === 'past') {
+        for (var i = 0; i < allRegistrations.length; i++) {
+            if (allRegistrations[i].status === 'past') {
+                filtered.push(allRegistrations[i]);
+            }
+        }
+    } else if (filter === 'cancelled') {
+        for (var i = 0; i < allRegistrations.length; i++) {
+            if (allRegistrations[i].status === 'cancelled') {
+                filtered.push(allRegistrations[i]);
+            }
+        }
     }
 
-    // Show empty state or list
-    if (filtered.length === 0) {
-        var filterName = filter.charAt(0).toUpperCase() + filter.slice(1);
-        if (filter === 'all') filterName = '';
+    // Update the registration count
+    if (countDisplay) {
+        countDisplay.textContent = filtered.length + ' registrations';
+    }
 
+    // Show the empty state if no registrations match the filter
+    if (filtered.length === 0) {
         list.innerHTML = `
         <div class="empty-state">
-        <p>No ${filterName ? filterName + ' ' : ''}registrations found</p>
+        <p>No registrations found</p>
         <p style="color: #999; margin-top: 8px;">
         Browse events and register to get started!
         </p>
@@ -299,11 +290,13 @@ function loadRegistrationsData(filter) {
         </div>
         `;
     } else {
-        // Build registration cards
-        list.innerHTML = filtered.map(function(reg) {
-            // Build action buttons based on status
-            var actions = '';
+        // Build HTML for each registration card
+        var html = '';
+        for (var i = 0; i < filtered.length; i++) {
+            var reg = filtered[i];
 
+            // Different buttons for upcoming events vs past events
+            var actions = '';
             if (reg.status === 'upcoming') {
                 actions = `
                 <a href="event-details.html?id=${reg.id}"
@@ -328,7 +321,8 @@ function loadRegistrationsData(filter) {
                 `;
             }
 
-            return `
+            // Build HTML for each event card, as a string, then inject into my-registration.html which may call this function
+            html = html + `
             <div class="registration-card">
             <div class="registration-info">
             <h4 class="registration-title">${reg.title}</h4>
@@ -346,40 +340,40 @@ function loadRegistrationsData(filter) {
             </div>
             </div>
             `;
-        }).join('');
+        }
+        list.innerHTML = html;
     }
 }
 
-// Sets up the filter tabs functionality
+// Set up the filter tabs so that clicking them will filter the list
 function setupFilterTabs() {
     var tabs = document.querySelectorAll('.filter-tab');
 
-    tabs.forEach(function(tab) {
-        tab.addEventListener('click', function() {
-            // Remove active class from all tabs
-            tabs.forEach(function(t) {
-                t.classList.remove('active');
-            });
+    for (var i = 0; i < tabs.length; i++) {
+        tabs[i].addEventListener('click', function() {
 
-            // Add active class to clicked tab
+            // Remove 'active' class from all tabs
+            var allTabs = document.querySelectorAll('.filter-tab');
+            for (var j = 0; j < allTabs.length; j++) {
+                allTabs[j].classList.remove('active');
+            }
+
+            // Add 'active' class to the clicked tab
             this.classList.add('active');
 
-            // Get filter value and reload data
+            // Get the filter value and reload the list
             var filter = this.getAttribute('data-filter');
             loadRegistrationsData(filter);
         });
-    });
+    }
 }
 
 
 // ========================================
-// 4. USER ACTION FUNCTIONS
+// USER ACTION FUNCTIONS
 // ========================================
 
-/**
- * Handles registration cancellation with confirmation
- * @param {number} registrationId - The ID of the registration to cancel
- */
+// Cancel registration (ask for confirmation first)
 function cancelRegistration(registrationId) {
     var confirmCancel = confirm(
         'Are you sure you want to cancel this registration?\n' +
@@ -387,40 +381,19 @@ function cancelRegistration(registrationId) {
     );
 
     if (confirmCancel) {
-        // In a real app, this would send a DELETE request to the server, but for Deliverable 1, we can just show a success message
-
         alert('Registration cancelled successfully!');
 
-        // Reload the registrations list & find which filter is active and reload
+        // Reload the registrations list to show the update
         var activeTab = document.querySelector('.filter-tab.active');
-        var filter = activeTab ? activeTab.getAttribute('data-filter') : 'all';
+        var filter = 'all';
+        if (activeTab) {
+            filter = activeTab.getAttribute('data-filter');
+        }
         loadRegistrationsData(filter);
     }
 }
 
-/**
- * Helper function to navigate to event details
- * @param {number} eventId - The ID of the event
- */
+// Go to the event details page
 function viewEventDetails(eventId) {
     window.location.href = 'event-details.html?id=' + eventId;
 }
-
-
-// ========================================
-// 5. (OPTIONAL) DEMO DATA REFRESH
-// ========================================
-
-// Simulates refreshing dashboard data. In a real app, this would fetch from a server
-function refreshDashboard() {
-    console.log('Dashboard refreshed at ' + new Date().toLocaleTimeString());
-
-    // Reload all dashboard components
-    loadDashboardStats();
-    loadUpcomingEvents();
-    loadRecentActivity();
-    loadSuggestedEvents();
-}
-
-// Uncomment the line below to auto-refresh every 60 seconds (for demo)
-// setInterval(refreshDashboard, 60000);

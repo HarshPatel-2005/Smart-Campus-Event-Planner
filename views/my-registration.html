@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- Overall Settings -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Registrations - Smart Campus</title>
-    <link rel="stylesheet" href="../public/css/style.css">
-    <script src="../public/js/main.js"></script>
+    <link rel="stylesheet" href="../public/css/style.css"">
 </head>
+
 <body>
+    <!--Navbar-->
+
     <nav class="navbar">
         <div class="navbar-logo"><a id="CEPID" href="student-dashboard.html">Campus Event Planner</a></div>
 
@@ -24,7 +28,8 @@
     </nav>
 
     <!-- Main Content -->
-    <main style="max-width: 1200px; margin: 2rem auto; padding: 0 1.5rem;">
+    <main style="max-width: 1200px; margin: 30px auto; padding: 0 20px;"> <!-- inline overrides document, need the content centered & spaced -->
+
         <section class="page-header">
             <h1>📋 My Registrations</h1>
             <p class="page-subtitle">Manage all your event registrations in one place</p>
@@ -38,18 +43,19 @@
                 <button class="filter-tab" data-filter="past">Past Events</button>
                 <button class="filter-tab" data-filter="cancelled">Cancelled</button>
             </div>
-            <span class="registration-count" id="registrationCount">4 registrations</span>
+            <span class="registration-count" id="registrationCount">4 registrations</span> <!-- show the student's total registered event count -->
         </section>
 
         <!-- Registrations List -->
         <section class="registrations-section">
-            <div class="registrations-list" id="registrationsList">
-                <!-- Populated by JavaScript -->
-            </div>
+            <div class="registrations-list" id="registrationsList"> </div>
+            <!-- this part's content is to be populated by JavaScript when the page loads,
+                 so that I could update the JS file to update all the content display at once,
+                 just like how a CSS document can change everything at once -->
         </section>
     </main>
 
-    <!-- Same footer as dashboard -->
+    <!-- Page Footer, same as the team's work -->
     <footer class="site-footer">
         <div class="footer-top">
             <div>
@@ -68,6 +74,7 @@
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <!-- Connect this html file to its corresponding JS file-->
+    <script src="main.js"></script>
 </body>
 </html>

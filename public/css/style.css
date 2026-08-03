@@ -1,14 +1,8 @@
+/* ========================================
+ * this is the stuff from Harsh's style.css
+ * ========================================
+ */
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-:root {
-    --primary-color: lightcoral;
-    --danger-color: #c74334;
-    --success-color: #28a745;
-    --text-dark: #333;
-    --text-light: #fff;
-}
-
-/*GLOBAL RESET & BASE TYPOGRAPHY*/
 
 * {
     margin: 0;
@@ -20,23 +14,9 @@ body, input, button, select, textarea {
     font-family: 'Inter', sans-serif;
 }
 
-h1, h2, h3, .navbar-logo {
-    font-family: 'Archivo Black', sans-serif;
-}
-
-h1, h2, h3 {
-    margin-bottom: 0.5em;
-}
-
-p {
-    margin-bottom: 0.5em;
-}
-
 hr {
     margin: 0 auto;
 }
-
-/*GLOBAL BUTTONS*/
 
 button, .btn {
     width: 10em;
@@ -67,29 +47,25 @@ button:active, .btn:active {
     transform: scale(0.95);
 }
 
-.btn, .btn:hover, .btn:active {
-    text-decoration: none;
+h1, h2, h3, .navbar-logo {
+    font-family: 'Archivo Black', sans-serif;
 }
 
-/* Color variants — layer on top of the base .btn above */
-.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
-    color: white;
+h1, h2, h3 {
+    margin-bottom: 0.5em;
 }
 
-.btn-secondary {
-    background-color: #ccc;
-    border-color: #ccc;
-    color: var(--text-dark);
+p {
+    margin-bottom: 0.5em;
 }
 
-.btn-secondary:hover {
-    background-color: #bbb;
-    border-color: #bbb;
+/* INDEX.HTML */
+
+#CEPID{
+color: lightcoral;
 }
 
-/*NAVBAR*/
+/* NAVBAR */
 
 .navbar {
     display: flex;
@@ -123,25 +99,26 @@ button:active, .btn:active {
     font-size: 0.9rem;
 }
 
-#CEPID {
-    color: lightcoral;
-}
-
-a {
+a{
     text-decoration: none;
     color: grey;
     transition: color 0.2s ease;
     display: inline-block;
 }
 
-a:hover, #CEPID:hover {
+a:hover, #CEPID:hover{
     color: black;
     text-decoration: underline;
     transform: scale(1.05);
 }
 
-a:active, #CEPID:active {
+a:active, #CEPID:active{
     transform: scale(0.95);
+}
+
+/* NEW — prevents .btn links from getting underlined on hover/active */
+.btn, .btn:hover, .btn:active {
+    text-decoration: none;
 }
 
 .navbar-links a.active {
@@ -149,9 +126,9 @@ a:active, #CEPID:active {
     text-decoration: underline;
 }
 
-/*HOME PAGE*/
+/* HERO SECTION */
 
-.hero-section {
+.hero-section{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,18 +144,20 @@ a:active, #CEPID:active {
     text-align: center;
 }
 
-.button-hero {
+.button-hero{
     display: flex;
     justify-content: center;
     gap: 2em;
     flex-wrap: wrap;
 }
 
-.p {
+.p{
     line-height: 3;
 }
 
-.how-it-works {
+/* HOW IT WORKS SECTION */
+
+.how-it-works{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -188,7 +167,7 @@ a:active, #CEPID:active {
     margin-bottom: 5%;
 }
 
-.how-it-works-cards {
+.how-it-works-cards{
     display: flex;
     justify-content: center;
     gap: 5em;
@@ -197,9 +176,9 @@ a:active, #CEPID:active {
     flex-wrap: wrap;
 }
 
-/*UNIVERSAL CARDS*/
+/* UNIVERSAL CARDS */
 
-.cards {
+.cards{
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
     border-radius: 5px;
@@ -218,7 +197,9 @@ a:active, #CEPID:active {
     box-shadow: 0 8px 28px 0 rgba(0,0,0,0.2);
 }
 
-.stats-box {
+/* STATS */
+
+.stats-box{
     width: 70%;
     padding: 2em 0;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -233,14 +214,13 @@ a:active, #CEPID:active {
     flex-wrap: wrap;
 }
 
-.stats {
+.stats{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .stats h3 {
-    margin: 0;
+    margin: 1;
     margin-bottom: 4px;
 }
 
@@ -248,7 +228,9 @@ a:active, #CEPID:active {
     margin: 0;
 }
 
-.why-section {
+/* WHY SECTION */
+
+.why-section{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -256,11 +238,11 @@ a:active, #CEPID:active {
     align-content: center;
 }
 
-.why-section h2 {
+.why-section h2{
     padding-top: 1em;
 }
 
-.why-cards {
+.why-cards{
     display: flex;
     justify-content: center;
     gap: 5em;
@@ -269,11 +251,11 @@ a:active, #CEPID:active {
     flex-wrap: wrap;
 }
 
-#time-saving-card {
-    width: 40%;
+#time-saving-card{
+width: 40%;
 }
 
-/*FOOTER*/
+/* FOOTER */
 
 .site-footer {
     margin-top: 3em;
@@ -334,9 +316,9 @@ a:active, #CEPID:active {
     margin: 0;
 }
 
-/*AUTH PAGES — LOGIN / REGISTER SHARED*/
+/* LOG IN PAGE */
 
-.log-in-page {
+.log-in-page{
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/1920x1080 Concordia Background.png');
     backdrop-filter: blur(10px);
     background-repeat: no-repeat;
@@ -421,6 +403,8 @@ a:active, #CEPID:active {
     font-weight: 600;
 }
 
+/* REGISTER */
+
 .form-row {
     display: flex;
     gap: 12px;
@@ -448,7 +432,7 @@ a:active, #CEPID:active {
     border-color: lightcoral;
 }
 
-/*CONTACT PAGE*/
+/* CONTACT PAGE */
 
 .about-section {
     text-align: center;
@@ -522,54 +506,54 @@ a:active, #CEPID:active {
     border-color: lightcoral;
 }
 
-/*EVENTS PAGE — SEARCH & LISTING*/
+/* EVENTS */
 
-.events-container {
+.events-container{
     max-width: 1100px;
     margin: 4rem auto;
     padding: 0 2rem;
 }
 
-.events-header {
+.events-header{
     margin-bottom: 2rem;
 }
 
-.events-header h2 {
+.events-header h2{
     font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.events-header p {
+.events-header p{
     max-width: 700px;
     line-height: 1.7;
     color: #444;
 }
 
-.search-card {
+.search-card{
     background: white;
     border-radius: 10px;
     padding: 2rem;
     box-shadow: 0 4px 15px rgba(0,0,0,.08);
 }
 
-.search-form {
+.search-form{
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-.search-form label {
-    font-weight: 600;
+.search-form label{
+    font-weight:600;
 }
 
-.search-row {
+.search-row{
     display: flex;
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
 }
 
-.search-row input {
+.search-row input{
     flex: 1;
     min-width: 350px;
     padding: 12px;
@@ -578,12 +562,13 @@ a:active, #CEPID:active {
     font-size: 1rem;
 }
 
-.event-cards {
+.event-cards{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
+
     max-width: 1100px;
     margin: 2rem auto 0;
 }
@@ -631,7 +616,7 @@ a:active, #CEPID:active {
     color: #444;
 }
 
-/*EVENT DETAILS PAGE*/
+/* EVENT DETAILS PAGE */
 
 .event-banner {
     width: 100%;
@@ -808,46 +793,92 @@ a:active, #CEPID:active {
     }
 }
 
-/*STUDENT DASHBOARD*/
+/* MEDIA QUERY */
 
+@media (max-width: 768px) {
+    .navbar {
+        position:relative;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar-actions {
+        margin-top: 8px;
+    }
+
+    .hero-section,
+    .how-it-works {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .stats-box {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .p {
+        line-height: 1.8;
+    }
+
+    .how-it-works-cards {
+        gap: 2em;
+    }
+
+    .site-footer {
+        padding: 2em 5% 1.5em;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+}
+
+/* ================================================================================================================================================================
+ * STUDENT DASHBOARD (these 2 lines above & below are long to help me find where they are cuz I use Kate on Linux to edit and the slider has a nice display for it)
+ * ================================================================================================================================================================ */
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     margin: 2rem 0;
+    justify-content: center;
 }
 
 .stat-card {
     background: white;
-    padding: 24px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     display: flex;
     align-items: center;
-    gap: 16px;
-    transition: 0.3s ease;
-}
-
-.stat-card:hover {
-    box-shadow: 0 8px 28px 0 rgba(0,0,0,0.12);
-    transform: translateY(-4px);
+    gap: 15px;
+    flex: 1 1 180px;
+    min-width: 150px;
 }
 
 .stat-icon {
-    font-size: 2rem;
-    width: 56px;
-    height: 56px;
+    font-size: 1.8rem;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    background-color: #f0f0f0;
     flex-shrink: 0;
 }
-
-.stat-card-primary .stat-icon { background: #fde3e1; }
-.stat-card-success .stat-icon { background: #e3f5e6; }
-.stat-card-info .stat-icon { background: #dbeafe; }
-.stat-card-warning .stat-icon { background: #fef3c7; }
 
 .stat-content {
     display: flex;
@@ -855,16 +886,17 @@ a:active, #CEPID:active {
 }
 
 .stat-number {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
     color: #1a1a1a;
 }
 
 .stat-label {
     font-size: 0.85rem;
-    color: grey;
+    color: #888;
 }
 
+/* Welcome section for Student Dashboard */
 .welcome-section {
     margin-bottom: 2rem;
 }
@@ -878,32 +910,32 @@ a:active, #CEPID:active {
 }
 
 .welcome-subtitle {
-    color: grey;
-    font-size: 1.05rem;
+    color: #888;
+    font-size: 1rem;
     margin-top: 4px;
 }
 
 .date-display {
     background: white;
-    padding: 10px 20px;
+    padding: 8px 16px;
     border-radius: 6px;
     font-weight: 500;
-    color: grey;
+    color: #888;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    display: inline-block;
 }
 
+/* Upcoming events' section */
 .events-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
     margin: 2rem 0;
 }
 
 .events-grid .cards {
-    width: auto;
-    aspect-ratio: auto;
+    width: 280px;
     padding: 1.5em;
+    flex: 1 1 250px;
 }
 
 .events-grid .cards .event-title {
@@ -914,10 +946,11 @@ a:active, #CEPID:active {
 
 .events-grid .cards .event-meta {
     font-size: 0.9rem;
-    color: grey;
+    color: #888;
     margin-bottom: 4px;
 }
 
+/* Events' status labels */
 .event-status {
     display: inline-block;
     padding: 4px 12px;
@@ -947,9 +980,10 @@ a:active, #CEPID:active {
     color: #666;
 }
 
+/* Recent activity and suggestions */
 .activity-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     gap: 24px;
     margin-top: 2rem;
 }
@@ -957,9 +991,10 @@ a:active, #CEPID:active {
 .activity-card,
 .suggestions-card {
     background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
-    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+    flex: 1 1 300px;
 }
 
 .activity-card h3,
@@ -969,6 +1004,7 @@ a:active, #CEPID:active {
     margin-bottom: 16px;
 }
 
+/* Activity list */
 .activity-list {
     list-style: none;
     padding: 0;
@@ -978,7 +1014,7 @@ a:active, #CEPID:active {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -991,7 +1027,7 @@ a:active, #CEPID:active {
     height: 10px;
     border-radius: 50%;
     flex-shrink: 0;
-    margin-top: 6px;
+    margin-top: 5px;
 }
 
 .dot-green { background: #2ecc71; }
@@ -1008,11 +1044,12 @@ a:active, #CEPID:active {
     color: #999;
 }
 
+/* Suggestions list */
 .suggestion-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 12px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
@@ -1036,8 +1073,49 @@ a:active, #CEPID:active {
     font-size: 0.9rem;
 }
 
-/*MY REGISTRATIONS PAGE*/
+/* Section header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
+.section-header h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.view-all-link {
+    color: lightcoral;
+    font-weight: 500;
+}
+
+.view-all-link:hover {
+    color: #c0392b;
+    text-decoration: underline;
+}
+
+/* ================================================================================================================================================================
+ * MY REGISTRATION (these 2 lines above & below are long to help me find where they are cuz I use Kate on Linux to edit and the slider has a nice display for it)
+ * ================================================================================================================================================================ */
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.page-subtitle {
+    color: #888;
+    font-size: 1rem;
+    margin-top: 4px;
+}
+
+/* Filter tabs */
 .filter-section {
     margin-bottom: 2rem;
 }
@@ -1050,13 +1128,13 @@ a:active, #CEPID:active {
 }
 
 .filter-tab {
-    padding: 10px 24px;
+    padding: 8px 20px;
     border: 1px solid #ddd;
     background: white;
     border-radius: 6px;
     font-weight: 500;
-    font-size: 0.95rem;
-    color: grey;
+    font-size: 0.9rem;
+    color: #888;
     cursor: pointer;
     transition: 0.2s ease;
     font-family: 'Inter', sans-serif;
@@ -1076,9 +1154,10 @@ a:active, #CEPID:active {
 
 .registration-count {
     font-size: 0.9rem;
-    color: grey;
+    color: #888;
 }
 
+/* Registration cards list */
 .registrations-list {
     display: flex;
     flex-direction: column;
@@ -1087,18 +1166,17 @@ a:active, #CEPID:active {
 
 .registration-card {
     background: white;
-    border-radius: 10px;
+    border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    padding: 20px 24px;
+    padding: 18px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: 0.3s ease;
     border-left: 4px solid lightcoral;
 }
 
 .registration-card:hover {
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .registration-info {
@@ -1113,7 +1191,7 @@ a:active, #CEPID:active {
 
 .registration-details {
     font-size: 0.9rem;
-    color: grey;
+    color: #888;
 }
 
 .registration-details span {
@@ -1126,56 +1204,12 @@ a:active, #CEPID:active {
     align-items: center;
 }
 
-/*DASHBOARD & REGISTRATIONS COMPONENTS*/
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.section-header h2 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0;
-}
-
-.view-all-link {
-    color: lightcoral;
-    font-weight: 500;
-}
-
-.view-all-link:hover {
-    color: #c0392b;
-    text-decoration: underline;
-}
-
-.page-header {
-    margin-bottom: 2rem;
-}
-
-.page-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.page-subtitle {
-    color: grey;
-    font-size: 1.05rem;
-    margin-top: 4px;
-}
-
+/* Empty state */
 .empty-state {
     text-align: center;
-    padding: 60px 20px;
+    padding: 50px 20px;
     background: white;
-    border-radius: 10px;
-}
-
-.empty-state p {
-    font-size: 1.2rem;
-    color: grey;
+    border-radius: 8px;
 }
 
 /*ADMIN*/
@@ -1388,75 +1422,32 @@ a:active, #CEPID:active {
 .admin-theme .navbar {
     background-color: #fdcdcd;
     border-bottom: none;
+.empty-state p {
+    font-size: 1.1rem;
+    color: #888;
 }
 
-/* ============================================================
-   MEDIA QUERIES — GENERAL / HOME / NAVBAR / FOOTER
-   ============================================================ */
+/* ================================================================================================================================================================
+ * Tweak the page's display on smaller screens like phones to make the webpage still look readable
+ * ================================================================================================================================================================ */
 
 @media (max-width: 768px) {
-    .navbar {
-        position: relative;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .navbar-actions {
-        margin-top: 8px;
-    }
-
-    .hero-section,
-    .how-it-works {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .stats-box {
-        width: 90%;
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .p {
-        line-height: 1.8;
-    }
-
-    .how-it-works-cards {
-        gap: 2em;
-    }
-
-    .site-footer {
-        padding: 2em 5% 1.5em;
-    }
-
-    .footer-top {
-        flex-direction: column;
-        gap: 1.5em;
-    }
-}
-
-/* ============================================================
-   MEDIA QUERIES — DASHBOARD / REGISTRATIONS / ADMIN
-   ============================================================ */
-
-@media (max-width: 768px) {
+    /* Stack stats into 2 columns */
     .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
     }
 
+    .stat-card {
+        flex: 1 1 140px;
+        min-width: 120px;
+    }
+
+    /* Stack activity section */
     .activity-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
+    /* Stack registration cards */
     .registration-card {
         flex-direction: column;
         align-items: flex-start;
@@ -1468,14 +1459,23 @@ a:active, #CEPID:active {
         justify-content: flex-end;
     }
 
+    /* Stack events */
     .events-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
     }
 
+    .events-grid .cards {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    /* Stack welcome header */
     .welcome-header {
         flex-direction: column;
     }
 
+    /* Stack filter tabs */
     .filter-tabs {
         flex-direction: column;
     }
@@ -1484,25 +1484,17 @@ a:active, #CEPID:active {
         width: 100%;
         text-align: center;
     }
-
-    .dashboard-lists {
-        grid-template-columns: 1fr;
-    }
-
-    .event-list li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .form-container .half-width,
-    .form-container .third-width {
-        flex: 1 1 100%;
-    }
 }
 
 @media (max-width: 480px) {
+    /* Stack stats into 1 column */
     .stats-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-card {
+        width: 100%;
+        max-width: 300px;
     }
 }
