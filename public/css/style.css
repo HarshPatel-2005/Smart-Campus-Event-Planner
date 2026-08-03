@@ -59,7 +59,7 @@ p {
 }
 
 /* ================================================================================================================================================================
- * Index page
+ * Index page specific bits, like the logo color
  * ================================================================================================================================================================ */
 
 #CEPID{
@@ -67,7 +67,7 @@ color: lightcoral;
 }
 
 /* ================================================================================================================================================================
- * Navbar
+ * The navbar that sits at the top of every page
  * ================================================================================================================================================================ */
 
 .navbar {
@@ -130,7 +130,7 @@ a:active, #CEPID:active{
 }
 
 /* ================================================================================================================================================================
- * Home page (hero section)
+ * Home page
  * ================================================================================================================================================================ */
 
 .hero-section{
@@ -160,10 +160,6 @@ a:active, #CEPID:active{
     line-height: 3;
 }
 
-/* ================================================================================================================================================================
- * Home page (how it works)
- * ================================================================================================================================================================ */
-
 .how-it-works{
     display: flex;
     flex-direction: column;
@@ -184,7 +180,7 @@ a:active, #CEPID:active{
 }
 
 /* ================================================================================================================================================================
- * Cards
+ * Generic card style reused across pretty much every page
  * ================================================================================================================================================================ */
 
 .cards{
@@ -205,10 +201,6 @@ a:active, #CEPID:active{
 .cards:hover {
     box-shadow: 0 8px 28px 0 rgba(0,0,0,0.2);
 }
-
-/* ================================================================================================================================================================
- * Home page (Stat box)
- * ================================================================================================================================================================ */
 
 .stats-box{
     width: 70%;
@@ -238,10 +230,6 @@ a:active, #CEPID:active{
 .stats p {
     margin: 0;
 }
-
-/* ================================================================================================================================================================
- * Home page (Why)
- * ================================================================================================================================================================ */
 
 .why-section{
     display: flex;
@@ -764,79 +752,11 @@ width: 40%;
     margin-bottom: 1em;
 }
 
-@media (max-width: 768px) {
-    .event-page {
-        flex-direction: column;
-    }
-
-    .event-sidebar {
-        position: static;
-        width: 100%;
-    }
-
-    .event-banner {
-        height: 200px;
-    }
-}
-
-/* ================================================================================================================================================================
- * Tweaks the page's display on smaller screens for the home page, navbar, and footer
- * ================================================================================================================================================================ */
-
-@media (max-width: 768px) {
-    .navbar {
-        position:relative;
-        flex-direction: column;
-        align-items: center;
-        padding: 15px;
-    }
-
-    .navbar-links {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .navbar-actions {
-        margin-top: 8px;
-    }
-
-    .hero-section,
-    .how-it-works {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .stats-box {
-        width: 90%;
-        flex-direction: column;
-    }
-
-    h1 {
-        font-size: 1.8rem;
-    }
-
-    .p {
-        line-height: 1.8;
-    }
-
-    .how-it-works-cards {
-        gap: 2em;
-    }
-
-    .site-footer {
-        padding: 2em 5% 1.5em;
-    }
-
-    .footer-top {
-        flex-direction: column;
-        gap: 1.5em;
-    }
-}
-
 /* ================================================================================================================================================================
  * Student dashboard (these 2 lines above & below are long to help me find where they are cuz I use Kate on Linux to edit and the slider has a nice display for it)
  * ================================================================================================================================================================ */
-.stats-grid {
+
+ .stats-grid {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
@@ -1018,9 +938,17 @@ width: 40%;
     margin-top: 5px;
 }
 
-.dot-green { background: #2ecc71; }
-.dot-blue { background: #3498db; }
-.dot-orange { background: #f39c12; }
+.dot-green { 
+    background: #2ecc71; 
+}
+
+.dot-blue { 
+    background: #3498db; 
+}
+
+.dot-orange { 
+    background: #f39c12; 
+}
 
 .activity-title {
     font-weight: 500;
@@ -1088,7 +1016,8 @@ width: 40%;
 /* ================================================================================================================================================================
  * My registrations (these 2 lines above & below are long to help me find where they are cuz I use Kate on Linux to edit and the slider has a nice display for it)
  * ================================================================================================================================================================ */
-.page-header {
+
+ .page-header {
     margin-bottom: 2rem;
 }
 
@@ -1201,7 +1130,7 @@ width: 40%;
 }
 
 /* ================================================================================================================================================================
- * Admin pages
+ * Admin pages, dashboard stats, event lists, forms, and the events table
  * ================================================================================================================================================================ */
 
 .container {
@@ -1232,12 +1161,14 @@ width: 40%;
 
 .admin-stat-number {
     font-size: 2.5rem;
+    color: var(--primary-color);
     font-family: 'Archivo Black', sans-serif;
 }
 
 .admin-stat-text {
     font-size: 1.25rem;
     font-weight: bold;
+    color: var(--primary-color);
     margin-top: 0.5rem;
 }
 
@@ -1271,6 +1202,9 @@ width: 40%;
     border-bottom: none;
 }
 
+.alert-full strong { color: var(--success-color); }
+.alert-cancelled strong { color: var(--danger-color); }
+
 .form-container {
     background: #fff;
     padding: 2rem;
@@ -1296,12 +1230,13 @@ width: 40%;
 }
 
 .form-container .third-width {
-    flex: 1 1 calc(33% - 1rem);
+    flex: 1 1 calc(33.333% - 1rem);
 }
 
 .form-container label {
     font-weight: 600;
     margin-bottom: 0.5rem;
+    color: var(--text-dark);
 }
 
 .form-container input[type="text"],
@@ -1324,6 +1259,7 @@ width: 40%;
 .form-container select:focus,
 .form-container textarea:focus {
     outline: none;
+    border-color: var(--primary-color);
 }
 
 .form-actions {
@@ -1354,6 +1290,7 @@ width: 40%;
     background-color: #f9f9f9;
     font-weight: 600;
     font-family: 'Archivo Black', sans-serif;
+    color: var(--text-dark);
 }
 
 .event-table tr:hover {
@@ -1368,18 +1305,15 @@ width: 40%;
 }
 
 .status-badge.open { 
-    background: #d4edda; 
-    color: #155724; 
+    background: #d4edda; color: #155724; 
 }
 
 .status-badge.full { 
-    background: #fff3cd; 
-    color: #856404; 
+    background: #fff3cd; color: #856404; 
 }
 
 .status-badge.cancelled { 
-    background: #f8d7da; 
-    color: #721c24; 
+    background: #f8d7da; color: #721c24; 
 }
 
 .action-buttons {
@@ -1395,6 +1329,7 @@ width: 40%;
     font-size: 0.85rem;
     font-weight: 600;
     background-color: #e2e3e5;
+    color: var(--text-dark);
     transition: background-color 0.2s, transform 0.2s;
 }
 
@@ -1403,14 +1338,8 @@ width: 40%;
     transform: scale(1.05);
 }
 
-.btn-small.danger { 
-    background-color: var(--danger-color); 
-    color: #fff; 
-}
-
-.btn-small.danger:hover { 
-    background-color: #c9302c; 
-}
+.btn-small.danger { background-color: var(--danger-color); color: #fff; }
+.btn-small.danger:hover { background-color: #c9302c; }
 
 .admin-theme {
     --primary-color: #b22222;
@@ -1432,7 +1361,67 @@ width: 40%;
  * ================================================================================================================================================================ */
 
 @media (max-width: 768px) {
-    /* Stack stats into 2 columns */
+    .navbar {
+        position:relative;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .navbar-links {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar-actions {
+        margin-top: 8px;
+    }
+
+    .hero-section,
+    .how-it-works {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .stats-box {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .p {
+        line-height: 1.8;
+    }
+
+    .how-it-works-cards {
+        gap: 2em;
+    }
+
+    .site-footer {
+        padding: 2em 5% 1.5em;
+    }
+
+    .footer-top {
+        flex-direction: column;
+        gap: 1.5em;
+    }
+
+    .event-page {
+        flex-direction: column;
+    }
+
+    .event-sidebar {
+        position: static;
+        width: 100%;
+    }
+
+    .event-banner {
+        height: 200px;
+    }
+
     .stats-grid {
         justify-content: center;
     }
@@ -1442,12 +1431,10 @@ width: 40%;
         min-width: 120px;
     }
 
-    /* Stack activity section */
     .activity-grid {
         flex-direction: column;
     }
 
-    /* Stack registration cards */
     .registration-card {
         flex-direction: column;
         align-items: flex-start;
@@ -1459,7 +1446,6 @@ width: 40%;
         justify-content: flex-end;
     }
 
-    /* Stack events */
     .events-grid {
         flex-direction: column;
         align-items: center;
@@ -1470,12 +1456,10 @@ width: 40%;
         max-width: 400px;
     }
 
-    /* Stack welcome header */
     .welcome-header {
         flex-direction: column;
     }
 
-    /* Stack filter tabs */
     .filter-tabs {
         flex-direction: column;
     }
@@ -1487,7 +1471,6 @@ width: 40%;
 }
 
 @media (max-width: 480px) {
-    /* Stack stats into 1 column */
     .stats-grid {
         flex-direction: column;
         align-items: center;
