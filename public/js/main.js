@@ -397,3 +397,151 @@ function cancelRegistration(registrationId) {
 function viewEventDetails(eventId) {
     window.location.href = 'event-details.html?id=' + eventId;
 }
+
+// ========================================
+// EVENTS PAGE SEARCH
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('eventSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            filterEventCards(this.value);
+        });
+    }
+});
+
+function filterEventCards(query) {
+    var lowerQuery = query.toLowerCase();
+    var cardLinks = document.querySelectorAll('#eventCardsContainer > a');
+
+    for (var i = 0; i < cardLinks.length; i++) {
+        var titleElement = cardLinks[i].querySelector('h4');
+        var title = titleElement ? titleElement.textContent.toLowerCase() : '';
+
+        if (title.indexOf(lowerQuery) !== -1) {
+            cardLinks[i].style.display = '';
+        } else {
+            cardLinks[i].style.display = 'none';
+        }
+    }
+}
+
+// ========================================
+// REGISTER FORM
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    var registerForm = document.getElementById('registerForm');
+    if (registerForm) {
+        registerForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            var firstName = document.getElementById('first-name').value;
+            var lastName = document.getElementById('last-name').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+            var role = document.getElementById('role').value;
+
+            try {
+                var response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ firstName, lastName, email, password, confirmPassword, role })
+                });
+
+                var data = await response.json();
+
+                if (response.ok) {
+                    alert('Account created! You can now log in.');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.error || 'Something went wrong.');
+                }
+            } catch (err) {
+                console.error('Register error:', err);
+                alert('Could not reach the server.');
+            }
+        });
+    }
+});
+
+// ========================================
+// LOGIN FORM
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    var loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            try {
+                var response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                var data = await response.json();
+
+                if (response.ok) {
+                    window.location.href = 'student-dashboard.html';
+                } else {
+                    alert(data.error || 'Login failed.');
+                }
+            } catch (err) {
+                console.error('Login error:', err);
+                alert('Could not reach the server.');
+            }
+        });
+    }
+});
+
+// ========================================
+// NAVBAR AUTH STATE
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    checkAuthStatus();
+});
+
+async function checkAuthStatus() {
+    var authOnlyLinks = document.querySelectorAll('.auth-only');
+    var actionBtn = document.getElementById('navbarActionBtn');
+
+    try {
+        var response = await fetch('/api/auth/me', { cache: 'no-store' });
+
+        if (response.ok) {
+            // Logged in — show Dashboard/My Registrations, show Logout
+            for (var i = 0; i < authOnlyLinks.length; i++) {
+                authOnlyLinks[i].classList.remove('auth-only');
+            }
+            if (actionBtn) {
+                actionBtn.textContent = 'Logout';
+                actionBtn.href = '#';
+                actionBtn.onclick = async function(e) {
+                    e.preventDefault();
+                    await fetch('/api/auth/logout');
+                    window.location.href = 'login.html';
+                };
+            }
+        } else {
+            // Not logged in — make sure links are hidden, show Login
+            for (var j = 0; j < authOnlyLinks.length; j++) {
+                authOnlyLinks[j].classList.add('auth-only');
+            }
+            if (actionBtn) {
+                actionBtn.textContent = 'Login';
+                actionBtn.href = 'login.html';
+                actionBtn.onclick = null;
+            }
+        }
+    } catch (err) {
+        console.error('Auth check error:', err);
+    }
+}

@@ -12,26 +12,10 @@
 
 const express = require('express');
 const session = require('express-session');
-const mysql = require('mysql2/promise');
 const path = require('path');
+const db = require('./database/db'); // shared connection pool
 
 const app = express();
-
-// ------------------------------------------------------------
-// Database connection
-// EDIT these values to match your local MySQL setup.
-// Both of you use this same `db` object in your models, e.g.:
-//   const { db } = require('../app');
-//   const [rows] = await db.query('SELECT * FROM Events');
-// ------------------------------------------------------------
-const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.DB_PASSWORD || '',              // put your local MySQL password here
-    database: 'campus_event_planner',
-    waitForConnections: true,
-    connectionLimit: 10
-});
 
 // ------------------------------------------------------------
 // Core middleware
@@ -56,15 +40,15 @@ app.use(express.static(path.join(__dirname, 'views'))); // lets /login.html, /ev
 // API routes
 // YOU own: auth + registrations
 // PERSON 2 owns: events + admin
-// (uncomment each line once that routes file exists)
+// (uncomment eventRoutes/adminRoutes once those files exist)
 // ------------------------------------------------------------
-// const authRoutes = require('./routes/authRoutes');
-// const registrationRoutes = require('./routes/registrationRoutes');
+const authRoutes = require('./routes/authRoutes');
+const registrationRoutes = require('./routes/registrationRoutes');
 // const eventRoutes = require('./routes/eventRoutes');
 // const adminRoutes = require('./routes/adminRoutes');
 
-// app.use('/api/auth', authRoutes);                 // /api/auth/register, /api/auth/login, /api/auth/logout
-// app.use('/api/registrations', registrationRoutes); // /api/registrations, /api/registrations/:id/cancel
+app.use('/api/auth', authRoutes);                 // /api/auth/register, /api/auth/login, /api/auth/logout
+app.use('/api/registrations', registrationRoutes); // /api/registrations, /api/registrations/:id/cancel
 // app.use('/api/events', eventRoutes);               // /api/events, /api/events/:id
 // app.use('/api/admin', adminRoutes);                // /api/admin/dashboard-stats, /api/admin/events
 
@@ -82,5 +66,3 @@ const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
-
-module.exports = { db };
