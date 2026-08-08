@@ -490,7 +490,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 var data = await response.json();
 
                 if (response.ok) {
-                    window.location.href = 'student-dashboard.html';
+                    if (data.user.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'student-dashboard.html';
+                    }
                 } else {
                     alert(data.error || 'Login failed.');
                 }
