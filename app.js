@@ -31,6 +31,19 @@ app.use(session({
 }));
 
 // ------------------------------------------------------------
+// stop students from just typing admin-dashboard.html in the
+// address bar and seeing it — checks the session before the
+// static file middleware below even gets a chance to serve it
+// ------------------------------------------------------------
+const adminPages = ['/admin-dashboard.html', '/create-event.html', '/manage-events.html', '/view-registrations.html', '/attendance-management.html', '/statistics.html'];
+app.use((req, res, next) => {
+    if (adminPages.includes(req.path) && (!req.session.userId || req.session.role !== 'admin')) {
+        return res.redirect('/login.html');
+    }
+    next();
+});
+
+// ------------------------------------------------------------
 // Serve your existing frontend as-is
 // ------------------------------------------------------------
 app.use('/public', express.static(path.join(__dirname, 'public')));
@@ -44,13 +57,13 @@ app.use(express.static(path.join(__dirname, 'views'))); // lets /login.html, /ev
 // ------------------------------------------------------------
 const authRoutes = require('./routes/authRoutes');
 const registrationRoutes = require('./routes/registrationRoutes');
-// const eventRoutes = require('./routes/eventRoutes');
-// const adminRoutes = require('./routes/adminRoutes');
+const eventRoutes = require('./routes/eventRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 
 app.use('/api/auth', authRoutes);                 // /api/auth/register, /api/auth/login, /api/auth/logout
 app.use('/api/registrations', registrationRoutes); // /api/registrations, /api/registrations/:id/cancel
-// app.use('/api/events', eventRoutes);               // /api/events, /api/events/:id
-// app.use('/api/admin', adminRoutes);                // /api/admin/dashboard-stats, /api/admin/events
+app.use('/api/events', eventRoutes);               // /api/events, /api/events/:id
+app.use('/api/admin', adminRoutes);                // /api/admin/dashboard-stats, /api/admin/events
 
 // ------------------------------------------------------------
 // Fallback: home page

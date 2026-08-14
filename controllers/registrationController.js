@@ -45,7 +45,10 @@ async function registerForEvent(req, res) {
             return res.status(400).json({ error: 'This event is not open for registration.' });
         }
 
-        const eventDateTime = new Date(`${event.event_date}T${event.start_time}`);
+        // mysql2 sends the date back as a full ISO string, grab just the
+        // date part before gluing the start time onto it or this breaks
+        const eventDateOnly = String(event.event_date).substring(0, 10);
+        const eventDateTime = new Date(`${eventDateOnly}T${event.start_time}`);
         if (eventDateTime < new Date()) {
             return res.status(400).json({ error: 'This event has already passed.' });
         }
@@ -141,9 +144,43 @@ async function getDashboardStats(req, res) {
     }
 }
 
+// ------------------------------------------------------------
+// GET /api/registrations/recent-activity
+// Powers the "Recent Activity" list on student-dashboard.html
+// ------------------------------------------------------------
+async function getRecentActivity(req, res) {
+    try {
+        if (!requireLogin(req, res)) return;
+
+        const activity = await Registration.getRecentActivity(req.session.userId);
+        res.json({ activity });
+    } catch (err) {
+        console.error('Recent activity error:', err);
+        res.status(500).json({ error: 'Could not load recent activity.' });
+    }
+}
+
+// ------------------------------------------------------------
+// GET /api/registrations/suggested
+// Powers the "Suggested For You" list on student-dashboard.html
+// ------------------------------------------------------------
+async function getSuggestedEvents(req, res) {
+    try {
+        if (!requireLogin(req, res)) return;
+
+        const suggestions = await Registration.getSuggestedEvents(req.session.userId);
+        res.json({ suggestions });
+    } catch (err) {
+        console.error('Suggested events error:', err);
+        res.status(500).json({ error: 'Could not load suggestions.' });
+    }
+}
+
 module.exports = {
     registerForEvent,
     cancelRegistration,
     getMyRegistrations,
-    getDashboardStats
+    getDashboardStats,
+    getRecentActivity,
+    getSuggestedEvents
 };

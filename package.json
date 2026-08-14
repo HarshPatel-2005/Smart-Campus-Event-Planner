@@ -1,7 +1,7 @@
 {
   "name": "smart-campus-event-planner",
   "version": "1.0.0",
-  "description": "SOEN287 Smart Campus Event Planner - Deliverable 2",
+  "description": "SOEN287 Smart Campus Event Planner",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",

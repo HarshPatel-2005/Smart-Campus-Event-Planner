@@ -5,8 +5,32 @@
 
 const db = require('../database/db');
 
-// Insert a new registration
+// looks for any registration row this student has for this event, no matter
+// the status — needed because the unique constraint on (user_id, event_id)
+// means there can only ever be one row per student per event
+async function findAnyRegistration(userId, eventId) {
+    const [rows] = await db.query(
+        'SELECT * FROM Registrations WHERE user_id = ? AND event_id = ?',
+        [userId, eventId]
+    );
+    return rows[0];
+}
+
+// registers a student for an event. if they already have a row for this
+// event from before (say it got cancelled and the event's back open now),
+// flip that row back to Registered instead of inserting a new one —
+// inserting a second row would violate the unique_registration constraint
 async function createRegistration(userId, eventId) {
+    const existing = await findAnyRegistration(userId, eventId);
+
+    if (existing) {
+        await db.query(
+            `UPDATE Registrations SET status = 'Registered', registration_date = NOW(), attended = 0 WHERE registration_id = ?`,
+            [existing.registration_id]
+        );
+        return existing.registration_id;
+    }
+
     const [result] = await db.query(
         'INSERT INTO Registrations (user_id, event_id, status) VALUES (?, ?, ?)',
         [userId, eventId, 'Registered']
@@ -72,15 +96,74 @@ async function getDashboardStats(userId) {
     const [rows] = await db.query(
         `SELECT
             COUNT(*) AS total_registered,
-            SUM(CASE WHEN status = 'Registered' AND e.event_date >= CURDATE() THEN 1 ELSE 0 END) AS upcoming,
-            SUM(CASE WHEN status = 'Attended' THEN 1 ELSE 0 END) AS attended,
-            SUM(CASE WHEN status = 'Cancelled' THEN 1 ELSE 0 END) AS cancelled
+            SUM(CASE WHEN r.status = 'Registered' AND e.event_date >= CURDATE() THEN 1 ELSE 0 END) AS upcoming,
+            SUM(CASE WHEN r.status = 'Attended' THEN 1 ELSE 0 END) AS attended,
+            SUM(CASE WHEN r.status = 'Cancelled' THEN 1 ELSE 0 END) AS cancelled
          FROM Registrations r
          JOIN Events e ON r.event_id = e.event_id
          WHERE r.user_id = ?`,
         [userId]
     );
     return rows[0];
+}
+
+// last few things this student did — no separate activity log table exists,
+// so this just reads straight off the registrations themselves, registration_date
+// doubles as the timestamp for "when did this happen"
+async function getRecentActivity(userId) {
+    const [rows] = await db.query(
+        `SELECT r.status, r.registration_date, e.title
+         FROM Registrations r
+         JOIN Events e ON r.event_id = e.event_id
+         WHERE r.user_id = ?
+         ORDER BY r.registration_date DESC
+         LIMIT 3`,
+        [userId]
+    );
+    return rows;
+}
+
+// figures out which category this student registers for the most, then
+// suggests upcoming events in that category they haven't signed up for yet.
+// brand new accounts with no history just get whatever's coming up soonest
+async function getSuggestedEvents(userId) {
+    const [topCategoryRows] = await db.query(
+        `SELECT e.category_id, COUNT(*) AS times_registered
+         FROM Registrations r
+         JOIN Events e ON r.event_id = e.event_id
+         WHERE r.user_id = ? AND e.category_id IS NOT NULL
+         GROUP BY e.category_id
+         ORDER BY times_registered DESC
+         LIMIT 1`,
+        [userId]
+    );
+
+    let rows;
+    if (topCategoryRows.length > 0) {
+        const favoriteCategoryId = topCategoryRows[0].category_id;
+        [rows] = await db.query(
+            `SELECT e.event_id, e.title, e.event_date, e.location
+             FROM Events e
+             WHERE e.category_id = ?
+               AND e.status = 'Open'
+               AND e.event_date >= CURDATE()
+               AND e.event_id NOT IN (SELECT event_id FROM Registrations WHERE user_id = ?)
+             ORDER BY e.event_date ASC
+             LIMIT 3`,
+            [favoriteCategoryId, userId]
+        );
+    } else {
+        // no registration history to base a suggestion on yet
+        [rows] = await db.query(
+            `SELECT e.event_id, e.title, e.event_date, e.location
+             FROM Events e
+             WHERE e.status = 'Open' AND e.event_date >= CURDATE()
+             ORDER BY e.event_date ASC
+             LIMIT 3`
+        );
+    }
+
+    return rows;
 }
 
 module.exports = {
@@ -90,5 +173,7 @@ module.exports = {
     getRegistrationsByUser,
     cancelRegistration,
     getRegistrationById,
-    getDashboardStats
+    getDashboardStats,
+    getRecentActivity,
+    getSuggestedEvents
 };

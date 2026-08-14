@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | Campus Event Planner</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body class="admin-theme">
     <!-- Navbar -->
@@ -17,6 +17,9 @@
             <li><a href="admin-dashboard.html" class="active">Dashboard</a></li>
             <li><a href="create-event.html">Create Event</a></li>
             <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="view-registrations.html">Registrations</a></li>
+            <li><a href="attendance-management.html">Attendance</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
         </ul>
 
         <div class="navbar-actions">
@@ -31,57 +34,51 @@
             <p>Welcome back! Here is the overview of your campus events.</p>
         </header>
 
-        <!-- Hard-coded Statistics -->
+        <!-- these 4 numbers get filled in by loadAdminDashboardStats() in main.js -->
         <section class="stats-grid">
             <div class="stat-card">
                 <h3>Total Events</h3>
-                <p class="stat-number">24</p>
+                <p class="stat-number" id="totalEventsStat">...</p>
             </div>
             <div class="stat-card">
                 <h3>Total Registrations</h3>
-                <p class="stat-number">845</p>
+                <p class="stat-number" id="totalRegistrationsStat">...</p>
             </div>
             <div class="stat-card">
                 <h3>Most Popular</h3>
-                <p class="stat-text">Career Events</p>
+                <p class="stat-text" id="mostPopularStat">...</p>
             </div>
             <div class="stat-card">
                 <h3>Avg. Attendance</h3>
-                <p class="stat-number">78%</p>
+                <p class="stat-number" id="avgAttendanceStat">...</p>
             </div>
         </section>
 
         <section class="dashboard-lists">
-            <!-- Upcoming Events -->
+            <!-- these two lists are still a work in progress on the backend side,
+                 leaving them as a quick static preview for now -->
             <div class="list-card">
                 <h2>Upcoming Events</h2>
                 <ul class="event-list">
                     <li>
-                        <strong>Resume Building Workshop</strong>
-                        <span>July 30, 2026 | 45/50 Registered</span>
-                    </li>
-                    <li>
-                        <strong>Tech Networking Night</strong>
-                        <span>August 5, 2026 | 120/150 Registered</span>
+                        <strong>Check Manage Events</strong>
+                        <span>for the full, live list of events</span>
                     </li>
                 </ul>
             </div>
 
-            <!-- Action Required List -->
             <div class="list-card">
                 <h2>Status Alerts</h2>
                 <ul class="event-list alert-list">
-                    <li class="alert-full">
-                        <strong>Web Dev Bootcamp</strong>
-                        <span>Status: Full Capacity (30/30)</span>
-                    </li>
-                    <li class="alert-cancelled">
-                        <strong>Outdoor Yoga</strong>
-                        <span>Status: Cancelled</span>
+                    <li>
+                        <strong>Check Manage Events</strong>
+                        <span>for status badges per event</span>
                     </li>
                 </ul>
             </div>
         </section>
     </main>
-<body class="admin-theme">
+
+    <script src="../public/js/main.js"></script>
+</body>
 </html>

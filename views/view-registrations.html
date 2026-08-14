@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Registrations | Campus Event Planner</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body class="admin-theme">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a id="CEPID" href="admin-dashboard.html">Campus Event Planner</a>
+        </div>
+
+        <ul class="navbar-links">
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="create-event.html">Create Event</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="view-registrations.html" class="active">Registrations</a></li>
+            <li><a href="attendance-management.html">Attendance</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>View Registrations</h1>
+            <p>Pick an event to see everyone who's signed up for it.</p>
+        </header>
+
+        <div class="form-container" style="margin-bottom: 2rem;">
+            <div class="form-group">
+                <label for="eventPicker">Event</label>
+                <!-- filled in by loadEventPicker() in main.js -->
+                <select id="eventPicker">
+                    <option value="">Loading events...</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="table-container">
+            <table class="event-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Email</th>
+                        <th>Registered On</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <!-- filled in by loadRegistrationsForPickedEvent() in main.js -->
+                <tbody id="registrationsTableBody">
+                    <tr><td colspan="4">Pick an event above to see its registrations.</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../public/js/main.js"></script>
+</body>
+</html>

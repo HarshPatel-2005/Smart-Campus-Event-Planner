@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Events | Campus Event Planner</title>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="../public/css/style.css">
 </head>
 <body class="admin-theme">
     <!-- Standardized Navigation -->
@@ -17,6 +17,9 @@
             <li><a href="admin-dashboard.html">Dashboard</a></li>
             <li><a href="create-event.html">Create Event</a></li>
             <li><a href="manage-events.html" class="active">Manage Events</a></li>
+            <li><a href="view-registrations.html">Registrations</a></li>
+            <li><a href="attendance-management.html">Attendance</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
         </ul>
 
         <div class="navbar-actions">
@@ -43,46 +46,25 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- Hardcoded Event 1 -->
-                    <tr>
-                        <td><strong>Tech Networking Night</strong></td>
-                        <td>Networking</td>
-                        <td>Aug 5, 2026</td>
-                        <td>120 / 150</td>
-                        <td><span class="status-badge open">Open</span></td>
-                        <td class="action-buttons">
-                            <button class="btn-small">Edit</button>
-                            <button class="btn-small danger">Cancel</button>
-                        </td>
-                    </tr>
-                    <!-- Hardcoded Event 2 -->
-                    <tr>
-                        <td><strong>Web Dev Bootcamp</strong></td>
-                        <td>Academic</td>
-                        <td>Aug 10, 2026</td>
-                        <td>30 / 30</td>
-                        <td><span class="status-badge full">Full</span></td>
-                        <td class="action-buttons">
-                            <button class="btn-small">Edit</button>
-                            <button class="btn-small danger">Cancel</button>
-                        </td>
-                    </tr>
-                    <!-- Hardcoded Event 3 -->
-                    <tr>
-                        <td><strong>Outdoor Yoga</strong></td>
-                        <td>Sports</td>
-                        <td>Aug 12, 2026</td>
-                        <td>0 / 40</td>
-                        <td><span class="status-badge cancelled">Cancelled</span></td>
-                        <td class="action-buttons">
-                            <button class="btn-small">Edit</button>
-                            <button class="btn-small danger">Delete</button>
-                        </td>
-                    </tr>
+                <!-- rows get filled in by loadManageEventsTable() in main.js,
+                     used to be 3 hardcoded rows here for D1 -->
+                <tbody id="eventsTableBody">
+                    <tr><td colspan="6">Loading events...</td></tr>
                 </tbody>
             </table>
         </section>
+
+        <!-- shows up when you click "View" on a row — lists who's registered
+             for that specific event, filled in by viewRegistrations() in main.js -->
+        <div class="modal-overlay" id="registrationsModal">
+            <div class="modal-box">
+                <button class="modal-close" onclick="closeRegistrationsModal()">&times;</button>
+                <h2 id="modalEventTitle">Registrations</h2>
+                <div id="modalRegistrationsList">Loading...</div>
+            </div>
+        </div>
     </main>
-<body class="admin-theme">
+
+    <script src="../public/js/main.js"></script>
+</body>
 </html>

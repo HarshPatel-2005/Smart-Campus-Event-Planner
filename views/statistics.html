@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistics | Campus Event Planner</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body class="admin-theme">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a id="CEPID" href="admin-dashboard.html">Campus Event Planner</a>
+        </div>
+
+        <ul class="navbar-links">
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="create-event.html">Create Event</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="view-registrations.html">Registrations</a></li>
+            <li><a href="attendance-management.html">Attendance</a></li>
+            <li><a href="statistics.html" class="active">Statistics</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Statistics</h1>
+            <p>How each event is doing, capacity filled and attendance rate side by side.</p>
+        </header>
+
+        <section class="table-container">
+            <table class="event-table">
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Status</th>
+                        <th>Signups / Capacity</th>
+                        <th>% Filled</th>
+                        <th>Attendance Rate</th>
+                    </tr>
+                </thead>
+                <!-- filled in by loadStatisticsTable() in main.js -->
+                <tbody id="statisticsTableBody">
+                    <tr><td colspan="5">Loading statistics...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../public/js/main.js"></script>
+</body>
+</html>

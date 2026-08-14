@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tech Career Fair - Smart Campus Event Planner</title>
+    <title>Event Details - Smart Campus Event Planner</title>
 
     <link rel="stylesheet" href="../public/css/style.css">
     <script src="../public/js/main.js"></script>
@@ -23,7 +23,8 @@
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
 
-        <div class="navbar-actions"><a href="login.html" id="navbarActionBtn" class="btn">Logout</a></div>
+        <div class="navbar-actions"><a href="login.html" id="navbarActionBtn" class="btn">Logout</a>
+        </div>
     </nav>
 
     <div class="event-banner"></div> <!--Empty spot to make a banner-->
@@ -32,39 +33,28 @@
 
         <div class="event-main">
 
-            <h1>Tech Career Fair</h1>
+            <!-- everything below gets filled in by loadEventDetails() in main.js
+                 once it reads the event id from the url -->
 
-            <span class="status-badge open" style="margin-bottom: 1em; display: inline-block;">Open</span>
+            <h1 id="eventTitle">Loading event...</h1>
+
+            <span id="eventStatusBadge" class="status-badge open" style="margin-bottom: 1em; display: inline-block;"></span>
 
             <div class="event-organizer-line">
                 <span class="organizer-label">Hosted by</span>
-                <strong>Concordia Career Center</strong>
+                <strong id="eventOrganizerName"></strong>
             </div>
 
             <div class="event-meta">
-                <p>📍 Hall Building, 8th Floor · Montreal, QC</p>
-                <p>📅 Thursday, July 24 · 10:00 AM &ndash; 3:00 PM</p>
+                <p id="eventLocationLine"></p>
+                <p id="eventDateLine"></p>
             </div>
 
             <hr>
 
             <div class="event-section">
                 <h2>Overview</h2>
-                <p class="p">Meet recruiters from over 30 companies looking to hire Concordia students for internships and full time roles. Bring copies of your resume and dress to impress.</p>
-                <p class="p">This is one of the biggest recruiting events of the semester, past attendees have landed interviews on the spot. Whether you're in engineering, business, or arts, there's something here for every program.</p>
-                <p class="p">Refreshments will be provided. Space is limited, register early to guarantee your spot.</p>
-            </div>
-
-            <hr>
-
-            <div class="event-section">
-                <h2>Location</h2>
-                <div class="location-box">
-                    <div>
-                        <strong>Hall Building</strong>
-                        <p class="p">1455 De Maisonneuve Blvd W<br>Montreal, QC H3G 1M8</p>
-                    </div>
-                </div>
+                <div id="eventDescription"></div>
             </div>
 
             <hr>
@@ -73,8 +63,8 @@
                 <h2>Organized By</h2>
                 <div class="organizer-card">
                     <div class="organizer-info">
-                        <p class="organizer-name">Concordia Career Center</p>
-                        <p class="p organizer-stats">40+ events hosted</p>
+                        <p class="organizer-name" id="eventOrganizerNameCard"></p>
+                        <p class="p organizer-stats">Campus event organizer</p>
                     </div>
                     <a href="contact.html" class="btn">Contact</a>
                 </div>
@@ -85,8 +75,8 @@
         <div class="event-sidebar">
             <div class="register-box">
                 <p class="register-label">Capacity</p>
-                <p class="register-value">120 spots · 34 registered</p>
-                <button type="button" class="auth-submit">Register</button>
+                <p class="register-value" id="eventCapacityText">Loading...</p>
+                <button type="button" id="eventRegisterBtn" class="auth-submit">Register</button>
             </div>
         </div>
 

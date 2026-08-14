@@ -21,7 +21,7 @@
             <li><a href="contact.html">Contact Us</a></li>
         </ul>
 
-        <div class="navbar-actions"><a href="login.html" id="navbarActionBtn" class="btn btn-secondary">Logout</a></div>
+        <div class="navbar-actions"><a href="login.html" id="navbarActionBtn" class="btn btn-secondary">Logout</a>
         </div>
     </nav>
 
@@ -35,55 +35,27 @@
         </p>
     </div>
 
-    <div class="search-bar-wrapper">
+    <div class="search-bar-wrapper" style="display: flex; gap: 12px; flex-wrap: wrap;">
         <input type="text" id="eventSearch" placeholder="Search events..." class="event-search-input">
+
+        <select id="categoryFilter" class="event-search-input" style="max-width: 220px;">
+            <option value="">All categories</option>
+            <option value="Academic workshops">Academic workshops</option>
+            <option value="Career events">Career events</option>
+            <option value="Club activities">Club activities</option>
+            <option value="Sports events">Sports events</option>
+            <option value="Cultural events">Cultural events</option>
+            <option value="Volunteering events">Volunteering events</option>
+            <option value="Social events">Social events</option>
+            <option value="Guest lectures">Guest lectures</option>
+            <option value="Networking events">Networking events</option>
+            <option value="Other">Other</option>
+        </select>
     </div>
     </div>
 
-    <!--Hard coding the events-->
-
-    <div class="event-cards" id="eventCardsContainer">
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 1</h4>
-            <p class="p">Desc of Event #1</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 2</h4>
-            <p class="p">Desc of Event #2</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 3</h4>
-            <p class="p">Desc of Event #3</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 4</h4>
-            <p class="p">Desc of Event #4</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 5</h4>
-            <p class="p">Desc of Event #5</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 6</h4>
-            <p class="p">Desc of Event #6</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 7</h4>
-            <p class="p">Desc of Event #7</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 8</h4>
-            <p class="p">Desc of Event #8</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 9</h4>
-            <p class="p">Desc of Event #9</p>
-        </div></a>
-        <a href="event-details.html"><div class="cards">
-            <h4>Event 10</h4>
-            <p class="p">Desc of Event #10</p>
-        </div></a>
-    </div>
+    <!-- events get injected here by loadEventsList() in main.js, this used to be hardcoded -->
+    <div class="event-cards" id="eventCardsContainer"></div>
 
     <footer class="site-footer">
         <div class="footer-top">

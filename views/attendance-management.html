@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance | Campus Event Planner</title>
+    <link rel="stylesheet" href="../public/css/style.css">
+</head>
+<body class="admin-theme">
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <a id="CEPID" href="admin-dashboard.html">Campus Event Planner</a>
+        </div>
+
+        <ul class="navbar-links">
+            <li><a href="admin-dashboard.html">Dashboard</a></li>
+            <li><a href="create-event.html">Create Event</a></li>
+            <li><a href="manage-events.html">Manage Events</a></li>
+            <li><a href="view-registrations.html">Registrations</a></li>
+            <li><a href="attendance-management.html" class="active">Attendance</a></li>
+            <li><a href="statistics.html">Statistics</a></li>
+        </ul>
+
+        <div class="navbar-actions">
+            <a href="login.html" class="btn btn-secondary">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="page-header">
+            <h1>Attendance</h1>
+            <p>Pick an event and mark who actually showed up.</p>
+        </header>
+
+        <div class="form-container" style="margin-bottom: 2rem;">
+            <div class="form-group">
+                <label for="attendanceEventPicker">Event</label>
+                <!-- filled in by loadEventPicker() in main.js, same function as view-registrations.html uses -->
+                <select id="attendanceEventPicker">
+                    <option value="">Loading events...</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="table-container">
+            <table class="event-table">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Email</th>
+                        <th>Current Status</th>
+                        <th>Mark Attendance</th>
+                    </tr>
+                </thead>
+                <!-- filled in by loadAttendanceTable() in main.js -->
+                <tbody id="attendanceTableBody">
+                    <tr><td colspan="4">Pick an event above to mark attendance.</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="../public/js/main.js"></script>
+</body>
+</html>
