@@ -4,21 +4,27 @@
 
 const db = require('../database/db');
 
+
+// get all event categories from the database
 async function getAllCategories() {
-    const [rows] = await db.query('SELECT * FROM Categories ORDER BY category_name ASC');
+    const [rows] = await db.query('SELECT * FROM Categories ORDER BY category_name ASC'); // returns the array of category objects to be used by listCategories() in eventController.js
     return rows;
 }
+
 
 // creates a new event, called from eventController.createEvent
 async function createEvent({ title, description, categoryId, eventDate, startTime, endTime, location, capacity, status, organizerId, organizerName }) {
     const [result] = await db.query(
-        `INSERT INTO Events 
+
+        // use parameterized queries to prevent SQL injection
+        `INSERT INTO Events
             (title, description, category_id, event_date, start_time, end_time, location, capacity, status, organizer_id, organizer_name)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [title, description, categoryId, eventDate, startTime, endTime, location, capacity, status, organizerId, organizerName]
     );
     return result.insertId;
 }
+
 
 // grabs every event, joined with category name and a live registration count
 // so events.html can show status/category
@@ -48,6 +54,7 @@ async function getAllEvents({ category, search } = {}) {
     return rows;
 }
 
+// to be used by getEventById in eventController.js, to find an event by its ID
 async function getEventById(eventId) {
     const [rows] = await db.query(
         `SELECT e.*, c.category_name,
@@ -60,9 +67,12 @@ async function getEventById(eventId) {
     return rows[0];
 }
 
+
 // for the edit form on manage-events.html
 async function updateEvent(eventId, { title, description, categoryId, eventDate, startTime, endTime, location, capacity, status }) {
     await db.query(
+
+        // if an event's status is cancelled, it also cancels all registrations for that event
         `UPDATE Events SET
             title = ?, description = ?, category_id = ?, event_date = ?,
             start_time = ?, end_time = ?, location = ?, capacity = ?, status = ?
@@ -77,7 +87,9 @@ async function updateEvent(eventId, { title, description, categoryId, eventDate,
     }
 }
 
+
 // just flips the status, used for the Cancel button on manage-events.html
+// a simpler alternative to updateEvent above, useful for only changing an event's status
 async function updateEventStatus(eventId, status) {
     await db.query('UPDATE Events SET status = ? WHERE event_id = ?', [status, eventId]);
 
@@ -85,6 +97,7 @@ async function updateEventStatus(eventId, status) {
         await cascadeCancelRegistrations(eventId);
     }
 }
+
 
 // when an event gets cancelled, everyone who was registered for it needs
 // their registration marked cancelled too
@@ -95,13 +108,15 @@ async function cascadeCancelRegistrations(eventId) {
     );
 }
 
+
 // removes the event
 async function deleteEvent(eventId) {
     await db.query('DELETE FROM Registrations WHERE event_id = ?', [eventId]);
     await db.query('DELETE FROM Events WHERE event_id = ?', [eventId]);
 }
 
-// everything the admin dashboard cards need
+
+// everything the admin dashboard cards need, for getDashBoardStats in adminController.js
 async function getDashboardStats() {
     const [[totals]] = await db.query(`
         SELECT
@@ -149,6 +164,7 @@ async function getDashboardStats() {
     };
 }
 
+
 // list of students registered for one specific event
 async function getRegistrationsForEvent(eventId) {
     const [rows] = await db.query(
@@ -162,6 +178,7 @@ async function getRegistrationsForEvent(eventId) {
     );
     return rows;
 }
+
 
 // public numbers for the homepage stats box
 async function getSiteStats() {
@@ -179,6 +196,7 @@ async function getSiteStats() {
         categories: catRow.total_categories || 0
     };
 }
+
 
 // per-event numbers for the statistics page
 async function getPerEventStats() {
@@ -207,6 +225,7 @@ async function getPerEventStats() {
         };
     });
 }
+
 
 module.exports = {
     getAllCategories,
