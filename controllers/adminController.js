@@ -1,9 +1,10 @@
-// adminController.js
-// admin-only stuff: dashboard numbers, attendance, viewing who's registered for what
 
 const Event = require('../models/Event');
 const db = require('../database/db');
 
+// ------------------------------------------------------------
+// Middleware type of helper: require the admin to be logged in
+// ------------------------------------------------------------
 function requireAdmin(req, res) {
     if (!req.session.userId || req.session.role !== 'admin') {
         res.status(403).json({ error: 'Admins only.' });
@@ -12,8 +13,7 @@ function requireAdmin(req, res) {
     return true;
 }
 
-// GET /api/admin/dashboard-stats
-// powers the stat cards + status alerts on admin-dashboard.html
+// stat cards + status alerts on admin-dashboard.html
 async function getDashboardStats(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -26,8 +26,7 @@ async function getDashboardStats(req, res) {
     }
 }
 
-// GET /api/admin/events/:id/registrations
-// powers a "who's registered" view for a specific event
+// "who's registered" view for a specific event
 async function getEventRegistrations(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -40,9 +39,7 @@ async function getEventRegistrations(req, res) {
     }
 }
 
-// POST /api/admin/attendance/:registrationId
-// marks a student as attended or missed for an event they registered for
-// body: { attended: true/false }
+// marks student as attended or missed for an event they registered for
 async function markAttendance(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -62,8 +59,7 @@ async function markAttendance(req, res) {
     }
 }
 
-// GET /api/admin/event-stats
-// powers statistics.html — one row per event with capacity/attendance breakdowns
+// statistics.html
 async function getPerEventStats(req, res) {
     try {
         if (!requireAdmin(req, res)) return;

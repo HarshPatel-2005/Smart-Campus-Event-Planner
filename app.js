@@ -1,13 +1,5 @@
 // ============================================================
 // Smart Campus Event Planner — Main Server
-// Deliverable 2
-// ============================================================
-// Your existing pages (student-dashboard.html, my-registration.html)
-// already use main.js to inject data client-side with hard-coded
-// arrays. Instead of switching to a templating engine and rewriting
-// every HTML file, this server serves your existing static pages
-// AS-IS, and exposes a JSON API underneath. main.js then swaps its
-// hard-coded arrays for fetch() calls to these endpoints.
 // ============================================================
 
 const express = require('express');
@@ -35,6 +27,7 @@ app.use(session({
 // address bar and seeing it — checks the session before the
 // static file middleware below even gets a chance to serve it
 // ------------------------------------------------------------
+
 const adminPages = ['/admin-dashboard.html', '/create-event.html', '/manage-events.html', '/view-registrations.html', '/attendance-management.html', '/statistics.html'];
 app.use((req, res, next) => {
     if (adminPages.includes(req.path) && (!req.session.userId || req.session.role !== 'admin')) {
@@ -50,11 +43,8 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views'))); // lets /login.html, /events.html etc. work directly
 
 // ------------------------------------------------------------
-// API routes
-// YOU own: auth + registrations
-// PERSON 2 owns: events + admin
-// (uncomment eventRoutes/adminRoutes once those files exist)
 // ------------------------------------------------------------
+
 const authRoutes = require('./routes/authRoutes');
 const registrationRoutes = require('./routes/registrationRoutes');
 const eventRoutes = require('./routes/eventRoutes');

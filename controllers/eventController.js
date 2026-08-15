@@ -25,8 +25,7 @@ async function listEvents(req, res) {
     }
 }
 
-// GET /api/events/categories
-// powers the category dropdown on create-event.html
+// category dropdown on create-event.html
 async function listCategories(req, res) {
     try {
         const categories = await Event.getAllCategories();
@@ -37,8 +36,7 @@ async function listCategories(req, res) {
     }
 }
 
-// GET /api/events/:id
-// powers event-details.html — one event's full info
+// event-details.html
 async function getEventById(req, res) {
     try {
         const event = await Event.getEventById(req.params.id);
@@ -52,9 +50,7 @@ async function getEventById(req, res) {
     }
 }
 
-// POST /api/events
-// powers the Create Event form on create-event.html
-// Section 9's validation rules: title can't be empty, date can't be in the past, capacity positive
+// Create Event form on create-event.html
 async function createEvent(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -96,8 +92,7 @@ async function createEvent(req, res) {
     }
 }
 
-// PUT /api/events/:id
-// powers the Edit button on manage-events.html
+// edit button on manage-events.html
 async function updateEvent(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -110,8 +105,7 @@ async function updateEvent(req, res) {
     }
 }
 
-// POST /api/events/:id/cancel
-// powers the Cancel button on manage-events.html — doesn't delete, just flips status
+// cancel button on manage-events.html
 async function cancelEvent(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -124,8 +118,7 @@ async function cancelEvent(req, res) {
     }
 }
 
-// DELETE /api/events/:id
-// powers the Delete button on manage-events.html
+// delete button on manage-events.html
 async function deleteEvent(req, res) {
     try {
         if (!requireAdmin(req, res)) return;
@@ -138,7 +131,6 @@ async function deleteEvent(req, res) {
     }
 }
 
-// GET /api/events/site-stats
 // public numbers for the homepage stats box, no login required
 async function getSiteStats(req, res) {
     try {

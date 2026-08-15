@@ -1,21 +1,11 @@
-// ============================================================
-// authController.js — register / login / logout logic
-// Owner: You (Person 1)
-// ============================================================
 
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-// ------------------------------------------------------------
-// POST /api/auth/register
-// Matches register.html's fields: first-name, last-name, email,
-// password, confirm-password, role
-// ------------------------------------------------------------
 async function registerUser(req, res) {
     try {
         const { firstName, lastName, email, password, confirmPassword, role } = req.body;
 
-        // --- Validation (Section 7.1 / Section 9) ---
         if (!firstName || !lastName || !email || !password || !role) {
             return res.status(400).json({ error: 'All fields are required.' });
         }
@@ -43,7 +33,7 @@ async function registerUser(req, res) {
             return res.status(409).json({ error: 'An account with this email already exists.' });
         }
 
-        // Hash the password — never store plain text (Section 7.2)
+        // Hashing Password
         const passwordHash = await bcrypt.hash(password, 10);
 
         const fullName = `${firstName} ${lastName}`;
@@ -58,7 +48,6 @@ async function registerUser(req, res) {
 }
 
 // ------------------------------------------------------------
-// POST /api/auth/login
 // Matches login.html's fields: email, password
 // ------------------------------------------------------------
 async function loginUser(req, res) {
@@ -99,9 +88,6 @@ async function loginUser(req, res) {
     }
 }
 
-// ------------------------------------------------------------
-// GET /api/auth/logout
-// ------------------------------------------------------------
 function logoutUser(req, res) {
     req.session.destroy((err) => {
         if (err) {
@@ -113,9 +99,7 @@ function logoutUser(req, res) {
 }
 
 // ------------------------------------------------------------
-// GET /api/auth/me
-// Lets the frontend check "am I logged in, and as who?"
-// Useful for showing the right navbar (student vs admin, logged in vs not)
+// showing the right navbar (student vs admin, logged in vs not)
 // ------------------------------------------------------------
 async function getCurrentUser(req, res) {
     if (!req.session.userId) {

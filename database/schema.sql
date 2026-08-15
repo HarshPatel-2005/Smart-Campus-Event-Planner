@@ -1,13 +1,5 @@
 -- ============================================================
--- Smart Campus Event Planner — Database Schema
--- Deliverable 2
--- ============================================================
--- Run this once to set up all tables needed by the app.
--- Matches Section 8 of the project spec (Users, Events,
--- Registrations, Categories) and the fields actually used
--- across index.html, events.html, event-details.html,
--- my-registration.html, student-dashboard.html,
--- admin-dashboard.html, create-event.html, manage-events.html.
+-- Smart Campus Event Planner
 -- ============================================================
 
 CREATE DATABASE IF NOT EXISTS campus_event_planner;
@@ -15,27 +7,25 @@ USE campus_event_planner;
 
 -- ============================================================
 -- Users table
--- Powers: register.html, login.html
+-- register.html, login.html
 -- ============================================================
 CREATE TABLE Users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     full_name VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
+    password_hash VARCHAR(256) NOT NULL,
     role ENUM('student', 'admin') NOT NULL DEFAULT 'student',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- ============================================================
 -- Categories table
--- Powers: category dropdown on create-event.html
--- Section 4 says categories can be hard-coded in D1 but must
--- come from the database in D2.
+-- category dropdown on create-event.html
 -- ============================================================
 CREATE TABLE Categories (
     category_id INT PRIMARY KEY AUTO_INCREMENT,
     category_name VARCHAR(50) NOT NULL UNIQUE,
-    description VARCHAR(255)
+    description VARCHAR(256)
 );
 
 INSERT INTO Categories (category_name, description) VALUES
@@ -52,8 +42,7 @@ INSERT INTO Categories (category_name, description) VALUES
 
 -- ============================================================
 -- Events table
--- Powers: events.html, event-details.html, create-event.html,
--- manage-events.html, admin-dashboard.html
+-- Powers: events.html, event-details.html, create-event.html, manage-events.html, admin-dashboard.html
 -- ============================================================
 CREATE TABLE Events (
     event_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,8 +65,7 @@ CREATE TABLE Events (
 
 -- ============================================================
 -- Registrations table
--- Powers: my-registration.html, student-dashboard.html,
--- event-details.html (register button)
+-- Powers: my-registration.html, student-dashboard.html, event-details.html (register button)
 -- ============================================================
 CREATE TABLE Registrations (
     registration_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -91,14 +79,5 @@ CREATE TABLE Registrations (
     FOREIGN KEY (event_id) REFERENCES Events(event_id),
 
     -- A student can't register for the same event twice
-    -- (Section 3.1 / Section 7.3 / Section 9 all require this)
     UNIQUE KEY unique_registration (user_id, event_id)
 );
-
--- ============================================================
--- Helpful indexes for common lookups
--- ============================================================
-CREATE INDEX idx_events_status ON Events(status);
-CREATE INDEX idx_events_category ON Events(category_id);
-CREATE INDEX idx_registrations_user ON Registrations(user_id);
-CREATE INDEX idx_registrations_event ON Registrations(event_id);

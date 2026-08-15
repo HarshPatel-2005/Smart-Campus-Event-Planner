@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', function() {
         loadHomeStats();
     }
 
-    // Check if the user is on the My Registrations page (has the registrations list)
+    // Check if the user is on the My Registrations page
     if (document.getElementById('registrationsList')) {
         loadRegistrationsData('all');
         setupFilterTabs();
     }
 
-    // Check if the user is on the Event Details page (has the register button)
+    // Check if the user is on the Event Details page
     if (document.getElementById('eventRegisterBtn')) {
         setupRegisterButton();
         loadEventDetails();
@@ -98,7 +98,7 @@ async function loadWelcomeName() {
         if (!response.ok) return;
 
         var data = await response.json();
-        var firstName = data.user.full_name.split(' ')[0]; // just the first name,
+        var firstName = data.user.full_name.split(' ')[0]; // just the first name
         nameEl.textContent = firstName;
     } catch (err) {
         console.error('Load welcome name error:', err);
@@ -106,7 +106,6 @@ async function loadWelcomeName() {
 }
 
 // fills in the stats box on the homepage
-// this used to just be hardcoded numbers sitting in the html
 async function loadHomeStats() {
     try {
         var response = await fetch('/api/events/site-stats', { cache: 'no-store' });
@@ -129,7 +128,7 @@ async function loadHomeStats() {
     }
 }
 
-// Update the 4 stat card categories — now pulled from the real backend
+// Update the 4 stat card categories
 async function loadDashboardStats() {
     var totalElement = document.getElementById('totalRegistered');
     var upcomingElement = document.getElementById('upcomingEvents');
@@ -138,7 +137,7 @@ async function loadDashboardStats() {
 
     try {
         var response = await fetch('/api/registrations/dashboard-stats', { cache: 'no-store' });
-        if (!response.ok) return; // not logged in, leave the placeholder numbers in the HTML
+        if (!response.ok) return;
 
         var data = await response.json();
 
@@ -151,7 +150,7 @@ async function loadDashboardStats() {
     }
 }
 
-// "Upcoming Events" cards on the dashboard — now pulled from the real backend
+// "Upcoming Events" cards on the dashboard
 async function loadUpcomingEvents() {
     var grid = document.getElementById('upcomingEventsGrid');
     if (!grid) return;
@@ -173,7 +172,7 @@ async function loadUpcomingEvents() {
         }
 
         if (upcoming.length === 0) {
-            grid.innerHTML = '<p style="color: grey;">No upcoming events yet. <a href="events.html" style="color: lightcoral;">Browse events</a> to register.</p>';
+            grid.innerHTML = '<p style="color: grey;">No upcoming events yet. <a href="events.html" style="color: lightcoral;">Browse events</a>.</p>';
             return;
         }
 
@@ -182,15 +181,12 @@ async function loadUpcomingEvents() {
             var event = upcoming[j];
             html = html + `
             <div class="cards">
-            <h4 class="event-title">${event.title}</h4>
-            <p class="event-meta">📅 ${formatDate(event.event_date)}</p>
-            <p class="event-meta">🕐 ${event.start_time}</p>
-            <p class="event-meta">📍 ${event.location}</p>
-            <span class="event-status status-upcoming">Upcoming</span>
-            <a href="event-details.html?id=${event.event_id}"
-            style="display:block; margin-top:12px; color:lightcoral; font-weight:500;">
-            View Details →
-            </a>
+                <h4 class="event-title">${event.title}</h4>
+                <p class="event-meta">📅 ${formatDate(event.event_date)}</p>
+                <p class="event-meta">🕐 ${event.start_time}</p>
+                <p class="event-meta">📍 ${event.location}</p>
+                <span class="event-status status-upcoming">Upcoming</span>
+                <a href="event-details.html?id=${event.event_id}" style="display:block; margin-top:12px; color:lightcoral; font-weight:500;"> View Details → </a>
             </div>
             `;
         }
@@ -201,15 +197,11 @@ async function loadUpcomingEvents() {
     }
 }
 
-// mysql2 hands date columns back as full ISO strings like "2026-08-12T00:00:00.000Z"
-// once they go through JSON, doing new Date() math directly on that shifts the day
-// backward for anyone west of UTC — this just grabs the YYYY-MM-DD part so we're
-// comparing plain dates instead of accidentally doing timezone math
 function getDateOnly(dateValue) {
     return String(dateValue).substring(0, 10);
 }
 
-// today's date as YYYY-MM-DD using the browser's LOCAL time, not UTC
+// today's date as YYYY-MM-DD using the browser's LOCAL time
 function getTodayString() {
     var now = new Date();
     var year = now.getFullYear();
@@ -222,12 +214,12 @@ function getTodayString() {
 function formatDate(dateInput) {
     var dateOnly = getDateOnly(dateInput);
     var parts = dateOnly.split('-');
-    var localDate = new Date(parts[0], parts[1] - 1, parts[2]); // built from local parts, no UTC shift
+    var localDate = new Date(parts[0], parts[1] - 1, parts[2]);
     var options = { month: 'short', day: 'numeric', year: 'numeric' };
     return localDate.toLocaleDateString('en-US', options);
 }
 
-// "Recent Activity" list on the dashboard — pulled from real registration history now
+// "Recent Activity" list on the dashboard
 async function loadRecentActivity() {
     var list = document.getElementById('recentActivity');
     if (!list) return;
@@ -263,11 +255,11 @@ async function loadRecentActivity() {
 
             html = html + `
             <li>
-            <span class="activity-dot dot-${dot}"></span>
-            <div>
-            <p class="activity-title">${actionText}</p>
-            <p class="activity-time">${timeAgo(item.registration_date)}</p>
-            </div>
+                <span class="activity-dot dot-${dot}"></span>
+                <div>
+                    <p class="activity-title">${actionText}</p>
+                    <p class="activity-time">${timeAgo(item.registration_date)}</p>
+                </div>
             </li>
             `;
         }
@@ -278,7 +270,6 @@ async function loadRecentActivity() {
     }
 }
 
-// turns a raw timestamp into "2 hours ago" / "3 days ago" style text
 function timeAgo(dateString) {
     var then = new Date(dateString);
     var secondsAgo = Math.floor((new Date() - then) / 1000);
@@ -295,8 +286,7 @@ function timeAgo(dateString) {
     return daysAgo + (daysAgo === 1 ? ' day ago' : ' days ago');
 }
 
-// "Suggested For You" list on the dashboard — based on whatever category
-// this student registers for the most, handled server-side in Registration.js
+// "Suggested For You" list on the dashboard based on whatever category the student registers for the most
 async function loadSuggestedEvents() {
     var container = document.getElementById('suggestedEvents');
     if (!container) return;
@@ -318,11 +308,11 @@ async function loadSuggestedEvents() {
             var s = suggestions[i];
             html = html + `
             <div class="suggestion-item">
-            <div class="suggestion-info">
-            <p class="suggestion-title">${s.title}</p>
-            <p class="suggestion-meta">📅 ${formatDate(s.event_date)} • 📍 ${s.location}</p>
-            </div>
-            <a href="event-details.html?id=${s.event_id}" class="suggestion-link">View →</a>
+                <div class="suggestion-info">
+                    <p class="suggestion-title">${s.title}</p>
+                    <p class="suggestion-meta">📅 ${formatDate(s.event_date)} • 📍 ${s.location}</p>
+                </div>
+                <a href="event-details.html?id=${s.event_id}" class="suggestion-link">View →</a>
             </div>
             `;
         }
@@ -360,7 +350,6 @@ async function loadRegistrationsData(filter) {
         return;
     }
 
-    // Normalize backend status/date into a simple status the filter tabs understand
     var todayStr = getTodayString();
     var normalized = [];
     for (var i = 0; i < allRegistrations.length; i++) {
@@ -414,14 +403,10 @@ async function loadRegistrationsData(filter) {
     if (filtered.length === 0) {
         list.innerHTML = `
         <div class="empty-state">
-        <p>No registrations found</p>
-        <p style="color: #999; margin-top: 8px;">
-        Browse events and register to get started!
-        </p>
-        <a href="events.html" class="btn"
-        style="display:inline-block; margin-top:16px; width:auto; padding:10px 24px;">
-        Browse Events
-        </a>
+            <p>No registrations found</p>
+            <p style="color: #999; margin-top: 8px;"> Browse events and register to get started!</p>
+            <a href="events.html" class="btn" style="display:inline-block; margin-top:16px; width:auto; padding:10px 24px;"> Browse Events
+            </a>
         </div>
         `;
     } else {
@@ -432,44 +417,29 @@ async function loadRegistrationsData(filter) {
             var actions = '';
             if (item.status === 'upcoming') {
                 actions = `
-                <a href="event-details.html?id=${item.eventId}"
-                class="btn"
-                style="width:auto; height:auto; padding:6px 16px;">
-                View
-                </a>
-                <button class="btn"
-                style="width:auto; height:auto; padding:6px 16px;
-                background:#c0392b; color:white;"
-                onclick="cancelRegistration(${item.id})">
-                Cancel
-                </button>
+                <a href="event-details.html?id=${item.eventId}"class="btn" style="width:auto; height:auto; padding:6px 16px;">View</a>
+                <button class="btn" style="width:auto; height:auto; padding:6px 16px; background:#c0392b; color:white;" onclick="cancelRegistration(${item.id})">Cancel</button>
                 `;
             } else {
                 actions = `
-                <a href="event-details.html?id=${item.eventId}"
-                class="btn"
-                style="width:auto; height:auto; padding:6px 16px;">
-                View
-                </a>
+                <a href="event-details.html?id=${item.eventId}"class="btn"style="width:auto; height:auto; padding:6px 16px;">View</a>
                 `;
             }
 
             html = html + `
             <div class="registration-card">
-            <div class="registration-info">
-            <h4 class="registration-title">${item.title}</h4>
-            <p class="registration-details">
-            <span>📅 ${item.date}</span>
-            <span>📍 ${item.location}</span>
-            <span>📌 Registered: ${item.registeredOn}</span>
-            </p>
-            <span class="event-status status-${item.status}">
-            ${item.statusLabel}
-            </span>
-            </div>
-            <div class="registration-actions">
-            ${actions}
-            </div>
+                <div class="registration-info">
+                    <h4 class="registration-title">${item.title}</h4>
+                    <p class="registration-details">
+                    <span>📅 ${item.date}</span>
+                    <span>📍 ${item.location}</span>
+                    <span>📌 Registered: ${item.registeredOn}</span>
+                    </p>
+                    <span class="event-status status-${item.status}">
+                    ${item.statusLabel}
+                    </span>
+                </div>
+                <div class="registration-actions">${actions}</div>
             </div>
             `;
         }
@@ -500,7 +470,7 @@ function setupFilterTabs() {
 // USER ACTION FUNCTIONS
 // ========================================
 
-// Cancel registration — now actually calls the backend
+// Cancel registration
 async function cancelRegistration(registrationId) {
     var confirmCancel = confirm(
         'Are you sure you want to cancel this registration?\n' +
@@ -540,10 +510,7 @@ function viewEventDetails(eventId) {
 // EVENT DETAILS — REGISTER BUTTON
 // ========================================
 
-// Wires up the Register button on event-details.html.
-// Reads the event ID from the URL (?id=X). Since Person 2's event
-// pages don't pass a real ID yet in every link, this falls back to
-// showing an alert if no ID is present in the URL.
+// Register button on event-details.html.
 function setupRegisterButton() {
     var registerBtn = document.getElementById('eventRegisterBtn');
     if (!registerBtn) return;
@@ -582,8 +549,7 @@ function setupRegisterButton() {
 // EVENTS LIST PAGE (events.html)
 // ========================================
 
-// pulls real events from the db and builds the cards, replacing whatever
-// hardcoded cards used to be sitting in the html
+// pulls real events from the db and builds the cards
 async function loadEventsList(filters) {
     var container = document.getElementById('eventCardsContainer');
     if (!container) return;
@@ -624,8 +590,7 @@ async function loadEventsList(filters) {
     }
 }
 
-// wires up the search box + category dropdown (if it exists) to reload
-// the list from the server instead of just hiding/showing cards client side
+// search box + category dropdown
 function setupEventsFilters() {
     var searchInput = document.getElementById('eventSearch');
     var categorySelect = document.getElementById('categoryFilter');
@@ -638,7 +603,6 @@ function setupEventsFilters() {
     }
 
     if (searchInput) {
-        // basic debounce so it's not firing a request on literally every keystroke
         var typingTimer;
         searchInput.addEventListener('input', function() {
             clearTimeout(typingTimer);
@@ -656,12 +620,12 @@ function setupEventsFilters() {
 // EVENT DETAILS PAGE (event-details.html)
 // ========================================
 
-// reads ?id= from the url and fills in the page with that specific event's info
+// fills the page with the specific details of the event
 async function loadEventDetails() {
     var urlParams = new URLSearchParams(window.location.search);
     var eventId = urlParams.get('id');
 
-    if (!eventId) return; // no id in the url, leave whatever placeholder content is already there
+    if (!eventId) return; 
 
     try {
         var response = await fetch(`/api/events/${eventId}`, { cache: 'no-store' });
@@ -709,7 +673,6 @@ async function setupCreateEventForm() {
     if (!form) return;
 
     // fill the category dropdown from the db instead of the hardcoded list
-    // (Section 4 wants categories to come from the backend in Deliverable 2)
     var categorySelect = document.getElementById('eventCategory');
     if (categorySelect) {
         try {
@@ -727,9 +690,6 @@ async function setupCreateEventForm() {
         }
     }
 
-    // if we got here with ?edit=ID in the url, we're editing an existing
-    // event instead of creating a new one — pre-fill the form and switch
-    // the submit button to send a PUT instead of a POST
     var urlParams = new URLSearchParams(window.location.search);
     var editId = urlParams.get('edit');
 
@@ -882,7 +842,6 @@ async function deleteEvent(eventId) {
     }
 }
 
-// opens the "who registered" modal for a given event and fills it in
 async function viewRegistrations(eventId, eventTitle) {
     var modal = document.getElementById('registrationsModal');
     var titleEl = document.getElementById('modalEventTitle');
@@ -903,8 +862,6 @@ async function viewRegistrations(eventId, eventTitle) {
             return;
         }
 
-        // reusing the same status colors already used on the student side
-        // instead of inventing a new badge style just for this modal
         var statusClassMap = {
             'Registered': 'status-upcoming',
             'Attended': 'status-attended',
@@ -940,7 +897,6 @@ function closeRegistrationsModal() {
     if (modal) modal.classList.remove('active');
 }
 
-// lets clicking outside the modal box close it too, not just the X button
 document.addEventListener('DOMContentLoaded', function() {
     var overlay = document.getElementById('registrationsModal');
     if (overlay) {
@@ -977,9 +933,6 @@ async function loadAdminDashboardStats() {
     }
 }
 
-// shared by view-registrations.html and attendance-management.html — fills
-// a <select> with every event so the admin can pick one, then hooks up the
-// change event to whatever function that page needs to run next
 async function loadEventPicker(selectId, onSelectCallback) {
     var select = document.getElementById(selectId);
     if (!select) return;
@@ -1109,7 +1062,7 @@ async function markStudentAttendance(registrationId, attended, eventId) {
         });
 
         if (response.ok) {
-            loadAttendanceTable(eventId); // refresh so the status column updates
+            loadAttendanceTable(eventId);
         } else {
             var data = await response.json();
             alert(data.error || 'Could not update attendance.');
@@ -1164,7 +1117,6 @@ async function loadStatisticsTable() {
 
 // ========================================
 // REGISTER FORM
-
 // ========================================
 
 document.addEventListener('DOMContentLoaded', function() {

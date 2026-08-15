@@ -59,8 +59,7 @@ async function countRegistrationsForEvent(eventId) {
     return rows[0].count;
 }
 
-// Get all registrations for a student, joined with event info
-// so my-registration.html has everything it needs in one call
+// Get all registrations for a student
 async function getRegistrationsByUser(userId) {
     const [rows] = await db.query(
         `SELECT r.registration_id, r.status, r.attended, r.registration_date,
@@ -91,7 +90,7 @@ async function getRegistrationById(registrationId) {
     return rows[0];
 }
 
-// Aggregate stats for the student dashboard (Section 7.4)
+// stats for the student dashboard
 async function getDashboardStats(userId) {
     const [rows] = await db.query(
         `SELECT
@@ -107,9 +106,7 @@ async function getDashboardStats(userId) {
     return rows[0];
 }
 
-// last few things this student did — no separate activity log table exists,
-// so this just reads straight off the registrations themselves, registration_date
-// doubles as the timestamp for "when did this happen"
+// last few things the student did
 async function getRecentActivity(userId) {
     const [rows] = await db.query(
         `SELECT r.status, r.registration_date, e.title
@@ -123,9 +120,7 @@ async function getRecentActivity(userId) {
     return rows;
 }
 
-// figures out which category this student registers for the most, then
-// suggests upcoming events in that category they haven't signed up for yet.
-// brand new accounts with no history just get whatever's coming up soonest
+// figures out which category this student registers for the most
 async function getSuggestedEvents(userId) {
     const [topCategoryRows] = await db.query(
         `SELECT e.category_id, COUNT(*) AS times_registered
