@@ -16,7 +16,7 @@ app.use(express.json());                         // parse JSON bodies (for fetch
 app.use(express.urlencoded({ extended: true }));  // parse form submissions
 
 app.use(session({
-    secret: 'change-this-to-something-random',
+    secret: 'dy123h123@duiaslc./213p',
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 1000 * 60 * 60 * 4 } // 4 hour session

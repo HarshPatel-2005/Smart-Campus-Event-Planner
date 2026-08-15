@@ -1,10 +1,13 @@
 // eventController.js
-// handles everything to do with events themselves (not registrations, that's Person 1's job)
+// handles everything to do with events themselves
 
 const Event = require('../models/Event');
 
 // small helper so we're not repeating this check in every function
 function requireAdmin(req, res) {
+
+    // checks for userId in session & if user role is admin
+    // if either fail, sends 403 forbidden error
     if (!req.session.userId || req.session.role !== 'admin') {
         res.status(403).json({ error: 'Admins only.' });
         return false;
@@ -16,6 +19,8 @@ function requireAdmin(req, res) {
 // powers events.html — supports ?category= and ?search= query params for filtering
 async function listEvents(req, res) {
     try {
+
+        // get category & search from query string, call Event.getAllEvents with filter & return as JSON
         const { category, search } = req.query;
         const events = await Event.getAllEvents({ category, search });
         res.json({ events });
@@ -39,10 +44,16 @@ async function listCategories(req, res) {
 // event-details.html
 async function getEventById(req, res) {
     try {
+
+        // get eventId from URL
         const event = await Event.getEventById(req.params.id);
+
+        // if no event is found, return 404 not found
         if (!event) {
             return res.status(404).json({ error: 'Event not found.' });
         }
+
+        // otherwise, send event details as JSON
         res.json({ event });
     } catch (err) {
         console.error('Get event error:', err);
@@ -53,10 +64,14 @@ async function getEventById(req, res) {
 // Create Event form on create-event.html
 async function createEvent(req, res) {
     try {
+
+        // check if user is admin
         if (!requireAdmin(req, res)) return;
 
+        // get event data from body
         const { title, description, categoryId, eventDate, startTime, endTime, location, capacity, status, organizerName } = req.body;
 
+        // event title can't be empty, date can't be in the past, capacity must be >0
         if (!title || title.trim() === '') {
             return res.status(400).json({ error: 'Event title cannot be empty.' });
         }
@@ -71,6 +86,7 @@ async function createEvent(req, res) {
             return res.status(400).json({ error: 'Capacity must be a positive number.' });
         }
 
+        // use the data to create an event
         const eventId = await Event.createEvent({
             title,
             description,
@@ -95,8 +111,11 @@ async function createEvent(req, res) {
 // edit button on manage-events.html
 async function updateEvent(req, res) {
     try {
+
+        // check if user is admin
         if (!requireAdmin(req, res)) return;
 
+        // get eventId from URL & update data from req.body, call for an update & return success message
         await Event.updateEvent(req.params.id, req.body);
         res.json({ message: 'Event updated.' });
     } catch (err) {
@@ -108,8 +127,11 @@ async function updateEvent(req, res) {
 // cancel button on manage-events.html
 async function cancelEvent(req, res) {
     try {
+
+        // check if user is admin
         if (!requireAdmin(req, res)) return;
 
+        // cancellation allows students to see that it is cancelled, rather than deleted (removed) entirely from the database
         await Event.updateEventStatus(req.params.id, 'Cancelled');
         res.json({ message: 'Event cancelled.' });
     } catch (err) {
@@ -121,8 +143,11 @@ async function cancelEvent(req, res) {
 // delete button on manage-events.html
 async function deleteEvent(req, res) {
     try {
+
+        // check if user is admin
         if (!requireAdmin(req, res)) return;
 
+        // this action, unlike the function above, actually will completely remove an event from the database
         await Event.deleteEvent(req.params.id);
         res.json({ message: 'Event deleted.' });
     } catch (err) {
@@ -134,6 +159,9 @@ async function deleteEvent(req, res) {
 // public numbers for the homepage stats box, no login required
 async function getSiteStats(req, res) {
     try {
+
+        // this can occur without login (doesn't require an admin), unlike getDashboardStats() from the adminController.js file
+        // get publicly available simple stats for the home page
         const stats = await Event.getSiteStats();
         res.json(stats);
     } catch (err) {

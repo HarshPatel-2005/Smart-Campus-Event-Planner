@@ -1,13 +1,10 @@
 // ============================================================
 // Registration.js — database queries for the Registrations table
-// Owner: You (Person 1)
 // ============================================================
 
 const db = require('../database/db');
 
-// looks for any registration row this student has for this event, no matter
-// the status — needed because the unique constraint on (user_id, event_id)
-// means there can only ever be one row per student per event
+// looks for any registration row this student has for this event
 async function findAnyRegistration(userId, eventId) {
     const [rows] = await db.query(
         'SELECT * FROM Registrations WHERE user_id = ? AND event_id = ?',
@@ -16,10 +13,7 @@ async function findAnyRegistration(userId, eventId) {
     return rows[0];
 }
 
-// registers a student for an event. if they already have a row for this
-// event from before (say it got cancelled and the event's back open now),
-// flip that row back to Registered instead of inserting a new one —
-// inserting a second row would violate the unique_registration constraint
+// registers a student for an event
 async function createRegistration(userId, eventId) {
     const existing = await findAnyRegistration(userId, eventId);
 
@@ -39,7 +33,6 @@ async function createRegistration(userId, eventId) {
 }
 
 // Check if this student has already registered for this event
-// (Section 9: students cannot register twice for the same event)
 async function hasUserRegistered(userId, eventId) {
     const [rows] = await db.query(
         `SELECT * FROM Registrations 
@@ -73,7 +66,7 @@ async function getRegistrationsByUser(userId) {
     return rows;
 }
 
-// Cancel a registration (only if it belongs to this user — checked in the controller)
+// Cancel a registration
 async function cancelRegistration(registrationId) {
     await db.query(
         `UPDATE Registrations SET status = 'Cancelled' WHERE registration_id = ?`,

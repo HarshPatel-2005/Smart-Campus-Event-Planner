@@ -1,6 +1,6 @@
 
 const Registration = require('../models/Registration');
-const Event = require('../models/Event'); // Person 2's file
+const Event = require('../models/Event');
 
 // ------------------------------------------------------------
 // Middleware type of helper: require the student to be logged in

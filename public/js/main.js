@@ -1218,10 +1218,10 @@ async function checkAuthStatus() {
                 actionBtn.textContent = 'Logout';
                 actionBtn.href = '#';
                 actionBtn.onclick = async function(e) {
-                    e.preventDefault();
-                    await fetch('/api/auth/logout');
-                    window.location.href = 'login.html';
-                };
+                e.preventDefault();
+                await fetch('/api/auth/logout', { cache: 'no-store' });
+                window.location.href = 'login.html';
+            };
             }
         } else {
             for (var j = 0; j < authOnlyLinks.length; j++) {
