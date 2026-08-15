@@ -1,6 +1,5 @@
 // ============================================================
-// authRoutes.js — URL routes for register / login / logout
-// Owner: You (Person 1)
+// authRoutes.js
 // ============================================================
 
 const express = require('express');

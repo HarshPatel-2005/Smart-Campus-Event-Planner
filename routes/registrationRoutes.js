@@ -1,7 +1,5 @@
 // ============================================================
-// registrationRoutes.js — URL routes for registering, cancelling,
-// viewing registrations, and dashboard stats
-// Owner: You (Person 1)
+// registrationRoutes.js
 // ============================================================
 
 const express = require('express');

@@ -5,7 +5,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
-const db = require('./database/db'); // shared connection pool
+const db = require('./database/db');
 
 const app = express();
 
@@ -24,8 +24,7 @@ app.use(session({
 
 // ------------------------------------------------------------
 // stop students from just typing admin-dashboard.html in the
-// address bar and seeing it — checks the session before the
-// static file middleware below even gets a chance to serve it
+// address bar and seeing it
 // ------------------------------------------------------------
 
 const adminPages = ['/admin-dashboard.html', '/create-event.html', '/manage-events.html', '/view-registrations.html', '/attendance-management.html', '/statistics.html'];
@@ -36,9 +35,6 @@ app.use((req, res, next) => {
     next();
 });
 
-// ------------------------------------------------------------
-// Serve your existing frontend as-is
-// ------------------------------------------------------------
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views'))); // lets /login.html, /events.html etc. work directly
 

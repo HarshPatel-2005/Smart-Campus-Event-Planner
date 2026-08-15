@@ -1,5 +1,6 @@
+// ============================================================
 // eventRoutes.js
-// urls for browsing, creating, editing events
+// ============================================================
 
 const express = require('express');
 const router = express.Router();
