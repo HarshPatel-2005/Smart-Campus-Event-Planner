@@ -1,4 +1,6 @@
-// Event.js
+// ============================================================
+// Event.js — database queries for the Event table
+// ============================================================
 
 const db = require('../database/db');
 
