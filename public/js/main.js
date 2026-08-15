@@ -827,7 +827,7 @@ async function cancelEvent(eventId) {
 }
 
 async function deleteEvent(eventId) {
-    if (!confirm('Delete this event permanently? This cannot be undone.')) return;
+    if (!confirm('Delete this event permanently? This action cannot be undone.')) return;
 
     try {
         var response = await fetch(`/api/events/${eventId}`, { method: 'DELETE' });
