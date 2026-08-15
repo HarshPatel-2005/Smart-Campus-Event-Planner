@@ -2,7 +2,6 @@
 
 const db = require('../database/db');
 
-// used by create-event.html to fill the category dropdown from the db instead of hardcoding it
 async function getAllCategories() {
     const [rows] = await db.query('SELECT * FROM Categories ORDER BY category_name ASC');
     return rows;
@@ -19,7 +18,8 @@ async function createEvent({ title, description, categoryId, eventDate, startTim
     return result.insertId;
 }
 
-// grabs every event so events.html can show status/category
+// grabs every event, joined with category name and a live registration count
+// so events.html can show status/category
 async function getAllEvents({ category, search } = {}) {
     let sql = `
         SELECT e.*, c.category_name,
@@ -46,7 +46,6 @@ async function getAllEvents({ category, search } = {}) {
     return rows;
 }
 
-// status/capacity/date before letting someone register
 async function getEventById(eventId) {
     const [rows] = await db.query(
         `SELECT e.*, c.category_name,
@@ -69,7 +68,8 @@ async function updateEvent(eventId, { title, description, categoryId, eventDate,
         [title, description, categoryId, eventDate, startTime, endTime, location, capacity, status, eventId]
     );
 
-    // if someone edits the status dropdown to Cancelled instead of using the dedicated cancel button, the registrations still need to know about it
+    // if someone edits the status dropdown to Cancelled instead of using the
+    // dedicated cancel button, the registrations need to know about it
     if (status === 'Cancelled') {
         await cascadeCancelRegistrations(eventId);
     }
@@ -84,7 +84,8 @@ async function updateEventStatus(eventId, status) {
     }
 }
 
-// when an event gets cancelled, everyone who was registered for it needs their registration marked cancelled too
+// when an event gets cancelled, everyone who was registered for it needs
+// their registration marked cancelled too
 async function cascadeCancelRegistrations(eventId) {
     await db.query(
         `UPDATE Registrations SET status = 'Cancelled' WHERE event_id = ? AND status = 'Registered'`,
@@ -92,12 +93,13 @@ async function cascadeCancelRegistrations(eventId) {
     );
 }
 
-// actually removes the event, used for the Delete button
+// removes the event
 async function deleteEvent(eventId) {
+    await db.query('DELETE FROM Registrations WHERE event_id = ?', [eventId]);
     await db.query('DELETE FROM Events WHERE event_id = ?', [eventId]);
 }
 
-// everything the admin dashboard cards need, all in one query so we're not
+// everything the admin dashboard cards need
 async function getDashboardStats() {
     const [[totals]] = await db.query(`
         SELECT
@@ -122,7 +124,7 @@ async function getDashboardStats() {
         LIMIT 1
     `);
 
-    // attendance rate = attended registrations / total registrations that should've shown up
+    // attendance rate = attended registrations / total registrations
     const [[attendance]] = await db.query(`
         SELECT
             SUM(CASE WHEN status = 'Attended' THEN 1 ELSE 0 END) AS attended,
@@ -145,7 +147,7 @@ async function getDashboardStats() {
     };
 }
 
-// list of students registered for one specific event, for the admin's "view registrations" and attendance marking screen
+// list of students registered for one specific event
 async function getRegistrationsForEvent(eventId) {
     const [rows] = await db.query(
         `SELECT r.registration_id, r.status, r.attended, r.registration_date,
@@ -159,7 +161,7 @@ async function getRegistrationsForEvent(eventId) {
     return rows;
 }
 
-// public numbers for the homepage stats box | general counts across the whole platform
+// public numbers for the homepage stats box
 async function getSiteStats() {
     const [[eventsRow]] = await db.query('SELECT COUNT(*) AS total_events FROM Events');
     const [[regRow]] = await db.query(
@@ -176,7 +178,7 @@ async function getSiteStats() {
     };
 }
 
-// how full each event got, how many showed up vs how many didn't
+// per-event numbers for the statistics page
 async function getPerEventStats() {
     const [rows] = await db.query(`
         SELECT e.event_id, e.title, e.capacity, e.status,
@@ -187,7 +189,6 @@ async function getPerEventStats() {
         ORDER BY e.event_date DESC
     `);
 
-    // do the percentage math here instead of in the controller
     return rows.map((row) => {
         const percentFilled = row.capacity > 0 ? Math.round((row.total_signups / row.capacity) * 100) : 0;
         const attendanceBase = row.attended_count + row.missed_count;
